@@ -422,24 +422,16 @@
 
 </section>
 
-<!-- Keyboard Page -->
-<section class="needs-page hidden" id="keyboardPage"
-         aria-labelledby="keyboardTitle">
 
-  <div class="needs-heading">
-    <p class="needs-eyebrow">Blink Communication</p>
-    <h1 id="keyboardTitle">الكيبورد</h1>
-    <p class="needs-description">
-      صفحة الكيبورد — يمكنك إضافة لوحة الكتابة هنا لاحقًا.
-    </p>
-  </div>
+<!-- =========================
+     KEYBOARD PAGE
+========================= -->
 
-  <div class="keyboard-placeholder">
-    <span class="need-icon">⌨️</span>
-    <p>الكيبورد</p>
-  </div>
+<section class="needs-page keyboard-page hidden" id="keyboardPage">
 
-  <div class="needs-grid needs-navigation-grid">
+  <!-- Navigation -->
+  <div class="needs-grid needs-navigation-grid keyboard-navigation">
+
     <button class="need-card" id="keyboardBackBtn" type="button">
       <span class="need-icon">↩️</span>
       <span class="need-label">الرجوع</span>
@@ -451,10 +443,67 @@
       <span class="need-label">زرار الطوارئ</span>
     </button>
 
-    <button class="need-card" id="keyboardHomeBtn" type="button">
-      <span class="need-icon">🏠</span>
-      <span class="need-label">الرئيسية</span>
+    <button class="need-card" id="keyboardNextBtn" type="button">
+      <span class="need-icon">➡️</span>
+      <span class="need-label">التالي</span>
     </button>
+
+  </div>
+
+  <!-- Message Output -->
+  <div class="keyboard-output">
+    <span class="keyboard-output-title">رسالتي</span>
+    <div id="keyboardOutput" aria-live="polite">
+      الكلام اللي هختاره هيظهر هنا
+    </div>
+  </div>
+
+  <!-- Arabic Letter Groups -->
+  <div class="keyboard-groups">
+
+    <button class="keyboard-group" data-group="0" type="button">
+      <span>ا ب ت ث ج ح</span>
+      <small>مجموعة</small>
+    </button>
+
+    <button class="keyboard-group" data-group="1" type="button">
+      <span>خ د ذ ر ز</span>
+      <small>مجموعة</small>
+    </button>
+
+    <button class="keyboard-group" data-group="2" type="button">
+      <span>س ش ص ض ط ظ</span>
+      <small>مجموعة</small>
+    </button>
+
+    <button class="keyboard-group" data-group="3" type="button">
+      <span>ط ع غ ف ق</span>
+      <small>مجموعة</small>
+    </button>
+
+    <button class="keyboard-group" data-group="4" type="button">
+      <span>ك ل م ن ه</span>
+      <small>مجموعة</small>
+    </button>
+
+    <button class="keyboard-group" data-group="5" type="button">
+      <span>و ي ة ء</span>
+      <small>مجموعة</small>
+    </button>
+
+  </div>
+
+  <!-- Speak Button - Full Width -->
+  <div class="keyboard-actions">
+
+    <button class="keyboard-action keyboard-speak-button"
+            id="keyboardSpeakBtn" type="button">
+
+      <span>🔊</span>
+      <strong>نطق</strong>
+
+    </button>
+
   </div>
 
 </section>
@@ -462,7 +511,199 @@
 
 
 
-    
+
+<!-- =========================
+     LETTERS POPUP
+========================= -->
+
+<!-- Letters Popup -->
+<dialog class="letter-dialog" id="letterDialog">
+
+  <div class="letter-dialog-content">
+
+    <!-- Popup Title -->
+    <h2 id="letterDialogTitle">اختار حرف</h2>
+
+    <!-- Shared Message Display -->
+    <div class="popup-message-box">
+
+      <span class="popup-message-title">رسالتي</span>
+
+      <div id="popupKeyboardOutput" aria-live="polite">
+        الكلام اللي هختاره هيظهر هنا
+      </div>
+
+    </div>
+
+    <!-- Letters -->
+    <div class="letter-grid" id="letterGrid"></div>
+
+    <!-- Popup Actions -->
+    <div class="popup-keyboard-actions">
+
+      <button class="popup-action-button"
+              id="popupSpaceBtn" type="button">
+        <span>ـ</span>
+        <strong>مسافة</strong>
+      </button>
+
+      <button class="popup-action-button"
+              id="popupDeleteBtn" type="button">
+        <span>⌫</span>
+        <strong>حذف</strong>
+      </button>
+
+      <button class="popup-action-button popup-exit-button"
+              id="letterExitBtn" type="button">
+        <span>↩️</span>
+        <strong>خروج</strong>
+      </button>
+
+    </div>
+
+  </div>
+
+</dialog>
+
+
+</section>
+
+
+
+
+
+<!-- =========================
+     MY ROOM PAGE
+========================= -->
+
+<section class="needs-page room-page hidden"
+         id="roomPage">
+
+  <!-- Page Title -->
+  <div class="needs-heading">
+    <p class="needs-eyebrow">Blink Communication</p>
+    <h1 data-room-text="title">غرفتي</h1>
+  </div>
+
+  <!-- Row 1: Navigation -->
+  <div class="needs-grid needs-navigation-grid room-navigation">
+
+    <button class="need-card" id="roomBackBtn" type="button">
+      <span class="need-icon">↩️</span>
+      <span class="need-label" data-room-text="back">الرجوع</span>
+    </button>
+
+    <button class="need-card needs-emergency-card"
+            id="roomEmergencyBtn" type="button">
+      <span class="need-icon">❗</span>
+      <span class="need-label" data-room-text="emergency">
+        زرار الطوارئ
+      </span>
+    </button>
+
+    <button class="need-card" id="roomNextBtn" type="button">
+      <span class="need-icon">➡️</span>
+      <span class="need-label" data-room-text="next">التالي</span>
+    </button>
+
+  </div>
+
+  <!-- Row 2: Room Controls -->
+  <div class="needs-grid room-controls">
+
+    <!-- Lighting -->
+    <button class="need-card room-control-card"
+            id="roomLightBtn" type="button">
+
+      <span class="need-icon room-light-icon">💡</span>
+
+      <span class="need-label" data-room-text="light">
+        الإضاءة
+      </span>
+
+    </button>
+
+    <!-- Fan -->
+    <button class="need-card room-control-card"
+            id="roomFanBtn" type="button">
+
+      <span class="need-icon room-fan-icon">🌀</span>
+
+      <span class="need-label" data-room-text="fan">
+        المروحة
+      </span>
+
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- ENTERTAINMENT PAGE -->
+<section class="needs-page entertainment-page hidden" id="entertainmentPage">
+
+  <div class="needs-heading">
+    <p class="needs-eyebrow">Blink Communication</p>
+    <h1 data-entertainment-text="title">الترفيه</h1>
+  </div>
+
+  <!-- Navigation -->
+  <div class="needs-grid needs-navigation-grid entertainment-navigation">
+
+    <button class="need-card" id="entertainmentBackBtn" type="button">
+      <span class="need-icon">↩️</span>
+      <span class="need-label" data-entertainment-text="back">الرجوع</span>
+    </button>
+
+    <button class="need-card needs-emergency-card"
+            id="entertainmentEmergencyBtn" type="button">
+      <span class="need-icon">❗</span>
+      <span class="need-label" data-entertainment-text="emergency">زرار الطوارئ</span>
+    </button>
+
+    <button class="need-card" id="entertainmentNextBtn" type="button">
+      <span class="need-icon">➡️</span>
+      <span class="need-label" data-entertainment-text="next">التالي</span>
+    </button>
+
+  </div>
+
+  <!-- Entertainment Choices -->
+  <div class="needs-grid entertainment-grid">
+
+    <button class="need-card entertainment-card" data-choice="quran" type="button">
+      <span class="need-icon">📖</span>
+      <span class="need-label" data-entertainment-text="quran">قرآن</span>
+    </button>
+
+    <button class="need-card entertainment-card" data-choice="youtube" type="button">
+      <span class="need-icon">▶️</span>
+      <span class="need-label" data-entertainment-text="youtube">يوتيوب</span>
+    </button>
+
+    <button class="need-card entertainment-card" data-choice="music" type="button">
+      <span class="need-icon">🎵</span>
+      <span class="need-label" data-entertainment-text="music">موسيقى</span>
+    </button>
+
+    <button class="need-card entertainment-card" data-choice="movie" type="button">
+      <span class="need-icon">🎬</span>
+      <span class="need-label" data-entertainment-text="movie">فيلم</span>
+    </button>
+
+  </div>
+
+  <!-- Selected Request -->
+  <div class="entertainment-message hidden"
+       id="entertainmentMessage"
+       aria-live="polite">
+  </div>
+
+</section>
+
+  
 
     
   </main>

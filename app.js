@@ -27,8 +27,19 @@ const translations = {
     medicineHelp: "محتاج مساعدة",
     medicineTakenStatus: "تم تسجيل أنك أخدت الدواء",
     medicineReminderSet: "تم ضبط التذكير بعد 10 دقايق",
-    medicineReminderNow: "حان وقت تذكير الدواء!"
-
+    medicineReminderNow: "حان وقت تذكير الدواء!",
+    entertainmentPage: {
+  title: "الترفيه",
+  back: "الرجوع",
+  emergency: "زرار الطوارئ",
+  next: "التالي",
+  quran: "قرآن",
+  youtube: "يوتيوب",
+  music: "موسيقى",
+  movie: "فيلم",
+  requestPrefix: "أنا محتاج"
+},
+    
   },
   en: {
     welcome:"A simpler way to communicate, one step at a time", caregiver:"Caregiver Dashboard", dashboardLabel:"ASSISTIVE COMMUNICATION",
@@ -68,7 +79,19 @@ const translations = {
     medicineHelp: "I need help",
     medicineTakenStatus: "Medicine taken has been recorded",
     medicineReminderSet: "Reminder set for 10 minutes",
-    medicineReminderNow: "It's time for your medicine reminder!"
+    medicineReminderNow: "It's time for your medicine reminder!",
+
+    entertainmentPage: {
+  title: "Entertainment",
+  back: "Back",
+  emergency: "Emergency",
+  next: "Next",
+  quran: "Quran",
+  youtube: "YouTube",
+  music: "Music",
+  movie: "Movie",
+  requestPrefix: "I need"
+},
    
 
 
@@ -199,6 +222,27 @@ function applyLanguage() {
       card.setAttribute("aria-label", category);
     }
   });
+
+  // Entertainment Page Translation
+const entertainmentTexts = translations[lang].entertainmentPage;
+
+document.querySelectorAll("[data-entertainment-text]").forEach(element => {
+    const key = element.dataset.entertainmentText;
+
+    if (entertainmentTexts[key]) {
+        element.textContent = entertainmentTexts[key];
+    }
+});
+
+// Update selected entertainment message
+const entertainmentMessage = $("entertainmentMessage");
+
+if (entertainmentMessage.dataset.choice) {
+    const choice = entertainmentMessage.dataset.choice;
+
+    entertainmentMessage.textContent =
+        `${entertainmentTexts.requestPrefix} ${entertainmentTexts[choice]}`;
+}
 }
 
 
@@ -251,7 +295,18 @@ document.getElementById("forgotBack")?.addEventListener("click", function () {
 });
 
 
-$("languageBtn").addEventListener("click", () => { lang = lang === "ar" ? "en" : "ar"; applyLanguage(); });
+
+$("languageBtn").addEventListener("click", () => {
+
+  lang = lang === "ar" ? "en" : "ar";
+
+  // Update the whole application language
+  applyLanguage();
+
+  // Update both keyboard screens
+  updateKeyboardLanguage();
+
+});
 
 $("themeBtn").addEventListener("click", () => {
   const isLight = document.body.classList.toggle("light-mode");
@@ -266,11 +321,13 @@ $("themeBtn").addEventListener("click", () => {
 });
 
 
-
 function showHomePage() {
+
   $("needsPage").classList.add("hidden");
   $("medicinePage").classList.add("hidden");
   $("keyboardPage").classList.add("hidden");
+  $("roomPage").classList.add("hidden");
+  $("entertainmentPage").classList.add("hidden");
 
   document.querySelector(".welcome-row").classList.remove("hidden");
   document.querySelector(".cards-grid").classList.remove("hidden");
@@ -281,35 +338,88 @@ function showHomePage() {
 
 
 function showNeedsPage() {
+
   document.querySelector(".welcome-row").classList.add("hidden");
   document.querySelector(".cards-grid").classList.add("hidden");
   document.querySelector(".pause-card").classList.add("hidden");
 
   $("medicinePage").classList.add("hidden");
   $("keyboardPage").classList.add("hidden");
+  $("roomPage").classList.add("hidden");
+
   $("needsPage").classList.remove("hidden");
   $("needsFeedback").classList.add("hidden");
 }
 
+
 function showMedicinePage() {
+
   document.querySelector(".welcome-row").classList.add("hidden");
   document.querySelector(".cards-grid").classList.add("hidden");
   document.querySelector(".pause-card").classList.add("hidden");
 
   $("needsPage").classList.add("hidden");
   $("keyboardPage").classList.add("hidden");
+  $("roomPage").classList.add("hidden");
+
   $("medicinePage").classList.remove("hidden");
 }
 
+
 function showKeyboardPage() {
+
   document.querySelector(".welcome-row").classList.add("hidden");
   document.querySelector(".cards-grid").classList.add("hidden");
   document.querySelector(".pause-card").classList.add("hidden");
 
   $("needsPage").classList.add("hidden");
   $("medicinePage").classList.add("hidden");
+  $("roomPage").classList.add("hidden");
+
   $("keyboardPage").classList.remove("hidden");
 }
+
+function showRoomPage() {
+    document.querySelector(".welcome-row").classList.add("hidden");
+    document.querySelector(".cards-grid").classList.add("hidden");
+    document.querySelector(".pause-card").classList.add("hidden");
+
+    $("needsPage").classList.add("hidden");
+    $("medicinePage").classList.add("hidden");
+    $("keyboardPage").classList.add("hidden");
+    $("entertainmentPage").classList.add("hidden");
+
+    $("roomPage").classList.remove("hidden");
+}
+
+
+function showRoomPage() {
+
+  document.querySelector(".welcome-row").classList.add("hidden");
+  document.querySelector(".cards-grid").classList.add("hidden");
+  document.querySelector(".pause-card").classList.add("hidden");
+
+  $("needsPage").classList.add("hidden");
+  $("medicinePage").classList.add("hidden");
+  $("keyboardPage").classList.add("hidden");
+
+  $("roomPage").classList.remove("hidden");
+}
+
+function showEntertainmentPage() {
+    document.querySelector(".welcome-row").classList.add("hidden");
+    document.querySelector(".cards-grid").classList.add("hidden");
+    document.querySelector(".pause-card").classList.add("hidden");
+
+    $("needsPage").classList.add("hidden");
+    $("medicinePage").classList.add("hidden");
+    $("keyboardPage").classList.add("hidden");
+    $("roomPage").classList.add("hidden");
+
+    $("entertainmentPage").classList.remove("hidden");
+}
+
+
 
 
 document.querySelectorAll(".category-card").forEach(card => {
@@ -325,6 +435,18 @@ document.querySelectorAll(".category-card").forEach(card => {
       showMedicinePage();
       return;
     }
+
+
+   if (key === "keyboard") {
+      showKeyboardPage();
+      return;
+    }
+
+if (key === "room") {
+  showRoomPage();
+  return;
+}
+
 
     if (key === "emergency") {
       $("emergencyDialog").showModal();
@@ -359,12 +481,47 @@ $("needsPage").querySelectorAll(".need-card").forEach(card => {
   });
 });
 
-// Medicine navigation
-$("medicineBackBtn").addEventListener("click", showHomePage);
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+// Medicine Page
+$("medicineBackBtn").addEventListener("click", showNeedsPage);
 $("medicineNextBtn").addEventListener("click", showKeyboardPage);
 
+// Keyboard Page
 $("keyboardBackBtn").addEventListener("click", showMedicinePage);
-$("keyboardHomeBtn").addEventListener("click", showHomePage);
+$("keyboardNextBtn").addEventListener("click", showRoomPage);
+
+// Room Page
+$("roomBackBtn").addEventListener("click", showKeyboardPage);
+$("roomNextBtn").addEventListener("click", showEntertainmentPage);
+
+// Entertainment Page
+$("entertainmentBackBtn").addEventListener("click", showRoomPage);
+$("entertainmentNextBtn").addEventListener("click", showHomePage);
+// Entertainment Choices
+document.querySelectorAll(".entertainment-card").forEach(card => {
+    card.addEventListener("click", () => {
+        const choice = card.dataset.choice;
+        const lang = document.documentElement.lang === "en" ? "en" : "ar";
+        const texts = translations[lang].entertainmentPage;
+        const message = $("entertainmentMessage");
+
+        message.dataset.choice = choice;
+        message.textContent = `${texts.requestPrefix} ${texts[choice]}`;
+
+        message.classList.remove("hidden");
+
+        // Highlight selected card
+        document.querySelectorAll(".entertainment-card").forEach(item => {
+            item.classList.remove("selected");
+        });
+
+        card.classList.add("selected");
+    });
+});
 
 // Medicine actions
 let medicineReminderTimer = null;
@@ -427,3 +584,301 @@ document.addEventListener("keydown", event => {
   if (event.key === "Escape" && paused) setPaused(false);
 });
 applyLanguage();
+
+/* =================================
+   ARABIC KEYBOARD SYSTEM
+================================= */
+
+// Arabic letter groups
+
+const keyboardGroupsByLanguage = {
+
+  ar: [
+    ["ا", "ب", "ت", "ث", "ج", "ح"],
+    ["خ", "د", "ذ", "ر", "ز"],
+    ["س", "ش", "ص", "ض", "ط", "ظ"],
+    ["ع", "غ", "ف", "ق"],
+    ["ك", "ل", "م", "ن", "ه"],
+    ["و", "ي", "ة", "ء"]
+  ],
+
+  en: [
+    ["A", "B", "C", "D", "E"],
+    ["F", "G", "H", "I", "J"],
+    ["K", "L", "M", "N"],
+    ["O", "P", "Q", "R"],
+    ["S", "T", "U", "V"],
+    ["W", "X", "Y", "Z"]
+  ]
+
+};
+
+let activeKeyboardGroupIndex = null;
+
+
+/* =================================
+   KEYBOARD LANGUAGE SYSTEM
+================================= */
+
+function updateKeyboardLanguage() {
+
+  const isArabic = lang === "ar";
+
+  const texts = isArabic ? {
+
+    back: "الرجوع",
+    emergency: "زرار الطوارئ",
+    next: "التالي",
+    message: "رسالتي",
+    placeholder: "الكلام اللي هختاره هيظهر هنا",
+    group: "مجموعة",
+    choose: "اختار حرف",
+    speak: "نطق",
+    space: "مسافة",
+    delete: "حذف",
+    exit: "خروج"
+
+  } : {
+
+    back: "Back",
+    emergency: "Emergency",
+    next: "Next",
+    message: "My Message",
+    placeholder: "Your selected letters will appear here",
+    group: "Group",
+    choose: "Choose a Letter",
+    speak: "Speak",
+    space: "Space",
+    delete: "Delete",
+    exit: "Exit"
+
+  };
+
+  // Update navigation buttons
+
+  $("keyboardBackBtn").querySelector(".need-label").textContent =
+    texts.back;
+
+  $("keyboardEmergencyBtn").querySelector(".need-label").textContent =
+    texts.emergency;
+
+  $("keyboardNextBtn").querySelector(".need-label").textContent =
+    texts.next;
+
+
+  // Update main message
+
+  document.querySelector(".keyboard-output-title").textContent =
+    texts.message;
+
+
+  // Update speak button
+
+  $("keyboardSpeakBtn").querySelector("strong").textContent =
+    texts.speak;
+
+
+  // Update all six letter groups
+
+  document.querySelectorAll(".keyboard-group").forEach((button, index) => {
+
+    const letters = keyboardGroupsByLanguage[lang][index];
+
+    button.querySelector("span").textContent = letters.join(" ");
+
+    button.querySelector("small").textContent = texts.group;
+
+  });
+
+
+  // Update popup
+
+  $("letterDialogTitle").textContent = texts.choose;
+
+  document.querySelector(".popup-message-title").textContent =
+    texts.message;
+
+  $("popupSpaceBtn").querySelector("strong").textContent =
+    texts.space;
+
+  $("popupDeleteBtn").querySelector("strong").textContent =
+    texts.delete;
+
+  $("letterExitBtn").querySelector("strong").textContent =
+    texts.exit;
+
+
+  // Change text direction
+
+  $("keyboardOutput").style.direction =
+    isArabic ? "rtl" : "ltr";
+
+  $("popupKeyboardOutput").style.direction =
+    isArabic ? "rtl" : "ltr";
+
+  document.querySelector(".keyboard-output").style.direction =
+    isArabic ? "rtl" : "ltr";
+
+  document.querySelector(".popup-message-box").style.direction =
+    isArabic ? "rtl" : "ltr";
+
+  $("letterGrid").style.direction =
+    isArabic ? "rtl" : "ltr";
+
+
+  // Update message without deleting it
+
+  updateKeyboardOutput();
+
+
+  // If popup is already open, refresh its letters
+
+  if (
+    $("letterDialog").open &&
+    activeKeyboardGroupIndex !== null
+  ) {
+
+    renderKeyboardLetters(activeKeyboardGroupIndex);
+
+  }
+
+}
+
+
+// Store selected letters
+let keyboardMessage = "";
+
+
+function updateKeyboardOutput() {
+
+  const placeholder = lang === "ar"
+    ? "الكلام اللي هختاره هيظهر هنا"
+    : "Your selected letters will appear here";
+
+  const message = keyboardMessage || placeholder;
+
+  $("keyboardOutput").textContent = message;
+
+  $("popupKeyboardOutput").textContent = message;
+
+}
+
+
+
+
+ 
+/* =================================
+   RENDER LETTERS
+================================= */
+
+function renderKeyboardLetters(groupIndex) {
+
+  const letters = keyboardGroupsByLanguage[lang][groupIndex];
+
+  const grid = $("letterGrid");
+
+  grid.innerHTML = "";
+
+  $("letterDialogTitle").textContent =
+    lang === "ar" ? "اختار حرف" : "Choose a Letter";
+
+  letters.forEach(letter => {
+
+    const letterButton = document.createElement("button");
+
+    letterButton.type = "button";
+    letterButton.className = "letter-button";
+    letterButton.textContent = letter;
+
+    letterButton.addEventListener("click", () => {
+
+      keyboardMessage += letter;
+
+      updateKeyboardOutput();
+
+      // Keep popup open
+
+    });
+
+    grid.appendChild(letterButton);
+
+  });
+
+}
+
+
+/* =================================
+   OPEN LETTER GROUPS
+================================= */
+
+document.querySelectorAll(".keyboard-group").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    activeKeyboardGroupIndex = Number(button.dataset.group);
+
+    updateKeyboardOutput();
+
+    renderKeyboardLetters(activeKeyboardGroupIndex);
+
+    $("letterDialog").showModal();
+
+  });
+
+});
+
+
+// Add space
+$("popupSpaceBtn").addEventListener("click", () => {
+
+  keyboardMessage += " ";
+
+  updateKeyboardOutput();
+
+});
+
+
+// Delete last character
+$("popupDeleteBtn").addEventListener("click", () => {
+
+  keyboardMessage = Array.from(keyboardMessage)
+    .slice(0, -1)
+    .join("");
+
+  updateKeyboardOutput();
+
+});
+
+
+// Exit popup and return to keyboard main page
+$("letterExitBtn").addEventListener("click", () => {
+
+  $("letterDialog").close();
+
+});
+
+
+// Speak selected message
+$("keyboardSpeakBtn").addEventListener("click", () => {
+
+  if (!keyboardMessage.trim()) {
+    return;
+  }
+
+  if (!("speechSynthesis" in window)) {
+    alert("النطق غير مدعوم في هذا المتصفح");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const speech = new SpeechSynthesisUtterance(keyboardMessage);
+
+  speech.lang = lang === "ar" ? "ar-EG" : "en-US";
+  speech.rate = 0.85;
+
+  window.speechSynthesis.speak(speech);
+
+});
+
+updateKeyboardLanguage();

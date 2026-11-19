@@ -993,4 +993,869 @@ body:has(.auth-view:not(.hidden)) #app {
 
 
 
+/* ==========================================
+   BLINK KEYBOARD PAGE - FINAL DESIGN
+========================================== */
+
+.keyboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 1vh, 12px);
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* Navigation */
+
+.keyboard-navigation {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(6px, 1vw, 14px);
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.keyboard-navigation .need-card {
+  min-width: 0;
+  min-height: clamp(58px, 11vh, 100px);
+  padding: 8px;
+  gap: 5px;
+  border-radius: 20px;
+}
+
+.keyboard-navigation .need-icon {
+  font-size: clamp(1.3rem, 3vh, 2rem);
+}
+
+.keyboard-navigation .need-label {
+  font-size: clamp(.9rem, 2.2vh, 1.3rem);
+}
+
+/* Message Output */
+
+.keyboard-output {
+  min-height: clamp(58px, 11vh, 90px);
+  max-height: 90px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text);
+  direction: rtl;
+  overflow: hidden;
+}
+
+.keyboard-output-title {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+#keyboardOutput {
+  max-height: 40px;
+  overflow: hidden;
+  font-size: clamp(1rem, 2.5vh, 1.4rem);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+/* Letter Groups */
+
+.keyboard-groups {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: clamp(6px, 1vh, 12px);
+}
+
+.keyboard-group {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px;
+  border: 2px solid var(--border);
+  border-radius: 25px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.keyboard-group span {
+  font-size: clamp(1rem, 2.8vw, 2rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.keyboard-group small {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.keyboard-group:hover,
+.keyboard-group:focus-visible {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  outline: none;
+}
+
+.keyboard-group:active {
+  transform: scale(.98);
+}
+
+/* Speak Button - Full Width */
+
+.keyboard-actions {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.keyboard-speak-button {
+  width: 100%;
+  min-height: clamp(60px, 10vh, 90px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  cursor: pointer;
+  transition: .2s;
+  box-sizing: border-box;
+}
+
+.keyboard-speak-button span {
+  font-size: clamp(1.5rem, 3.5vh, 2.3rem);
+}
+
+.keyboard-speak-button strong {
+  font-size: clamp(1rem, 2.5vh, 1.4rem);
+}
+
+.keyboard-speak-button:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+
+.keyboard-speak-button:active {
+  transform: scale(.99);
+}
+
+/* Letters Popup */
+
+.letter-dialog {
+  width: min(85vw, 850px);
+  max-width: 850px;
+  max-height: 80dvh;
+  padding: 0;
+  border: 2px solid var(--border);
+  border-radius: 25px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.letter-dialog::backdrop {
+  background: rgba(0, 0, 0, .78);
+  backdrop-filter: blur(5px);
+}
+
+.letter-dialog-content {
+  position: relative;
+  padding: clamp(22px, 4vw, 40px);
+  text-align: center;
+}
+
+.letter-dialog-content h2 {
+  margin: 0 0 22px;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.letter-close {
+  position: absolute;
+  top: 8px;
+  inset-inline-end: 15px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.letter-button {
+  min-width: 0;
+  min-height: clamp(65px, 10vh, 100px);
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: inherit;
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  font-weight: 800;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.letter-button:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.letter-button:active {
+  transform: scale(.95);
+}
+
+/* Room Page */
+
+.room-page {
+  min-height: 0;
+}
+
+/* ==========================================
+   KEYBOARD RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 600px) {
+
+  .keyboard-navigation {
+    gap: 6px;
+  }
+
+  .keyboard-navigation .need-card {
+    border-radius: 14px;
+    min-height: 58px;
+  }
+
+  .keyboard-group {
+    border-radius: 15px;
+    padding: 5px;
+  }
+
+  .keyboard-group span {
+    font-size: clamp(.85rem, 3.5vw, 1.25rem);
+    letter-spacing: 0;
+  }
+
+  .keyboard-group small {
+    font-size: .72rem;
+  }
+
+  .keyboard-speak-button {
+    border-radius: 15px;
+  }
+
+  .letter-dialog {
+    width: 94vw;
+  }
+
+  .letter-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+
+/* Short screens */
+
+@media (max-height: 650px) {
+
+  .keyboard-page {
+    gap: 5px;
+  }
+
+  .keyboard-navigation .need-card {
+    min-height: 48px;
+  }
+
+  .keyboard-output {
+    min-height: 42px;
+  }
+
+  .keyboard-speak-button {
+    min-height: 52px;
+  }
+
+}
+
+/* No scrolling on keyboard page */
+
+html:has(#keyboardPage:not(.hidden)),
+body:has(#keyboardPage:not(.hidden)) {
+  height: 100%;
+  overflow: hidden;
+}
+
+body:has(#keyboardPage:not(.hidden)) .app-shell {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+body:has(#keyboardPage:not(.hidden)) .topbar {
+  flex-shrink: 0;
+}
+
+body:has(#keyboardPage:not(.hidden)) #keyboardPage {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+  overflow: hidden;
+  padding-top: clamp(5px, 1vh, 12px);
+  padding-bottom: 5px;
+}
+
+body:has(#keyboardPage:not(.hidden)) .keyboard-groups {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+
+/* =================================
+   POPUP LIVE MESSAGE
+================================= */
+
+.popup-message-box {
+  width: 100%;
+  min-height: 75px;
+  max-height: 100px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 15px;
+  margin-bottom: 18px;
+
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  background: var(--surface-2);
+  direction: rtl;
+  overflow: hidden;
+}
+
+.popup-message-title {
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+#popupKeyboardOutput {
+  color: var(--text);
+  font-size: clamp(1rem, 2.5vh, 1.4rem);
+  font-weight: 800;
+  max-height: 45px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+/* Popup action buttons */
+
+.popup-keyboard-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  margin-top: 18px;
+}
+
+.popup-action-button {
+  min-width: 0;
+  min-height: 75px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  border: 2px solid var(--border);
+  border-radius: 17px;
+
+  background: var(--surface-2);
+  color: var(--text);
+
+  font-family: inherit;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.popup-action-button span {
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.popup-action-button strong {
+  font-size: 1rem;
+}
+
+.popup-action-button:hover {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.popup-action-button:active {
+  transform: scale(.97);
+}
+
+/* Exit Button */
+
+.popup-exit-button {
+  border-color: var(--danger);
+}
+
+.popup-exit-button:hover {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+
+/* Popup sizing */
+
+.letter-dialog {
+  width: min(90vw, 850px);
+  max-height: 90dvh;
+  overflow-y: auto;
+}
+
+.letter-dialog-content {
+  padding: clamp(18px, 3vw, 35px);
+}
+
+.letter-grid {
+  margin-top: 5px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .popup-keyboard-actions {
+    gap: 7px;
+  }
+
+  .popup-action-button {
+    min-height: 65px;
+    border-radius: 13px;
+  }
+
+  .popup-action-button strong {
+    font-size: .85rem;
+  }
+
+}
+
+
+
+/* =====================================
+   MY ROOM PAGE
+===================================== */
+
+.room-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+.room-page .needs-heading {
+  flex-shrink: 0;
+  margin-bottom: 0;
+  text-align: end;
+}
+
+.room-page .needs-heading h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Row 1: Back - Emergency - Next */
+
+.room-navigation {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.room-navigation .need-card {
+  min-height: 100px;
+  border-radius: 22px;
+  padding: 10px;
+  gap: 7px;
+}
+
+.room-navigation .need-icon {
+  font-size: 2rem;
+}
+
+.room-navigation .need-label {
+  font-size: 1.15rem;
+}
+
+/* Row 2: Lighting and Fan */
+
+.room-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.room-control-card {
+  min-height: 130px;
+  border-radius: 23px;
+  gap: 10px;
+  transition: .2s;
+}
+
+.room-control-card .need-icon {
+  font-size: 2.7rem;
+}
+
+.room-control-card .need-label {
+  font-size: 1.35rem;
+}
+
+.room-light-icon {
+  color: #eabf35;
+}
+
+.room-fan-icon {
+  color: #38bdf8;
+}
+
+/* Hover Effects */
+
+.room-control-card:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+}
+
+.room-control-card:active {
+  transform: scale(.98);
+}
+
+/* =====================================
+   ENTERTAINMENT PAGE
+===================================== */
+
+.entertainment-page {
+  width: 100%;
+  min-height: 0;
+}
+
+.entertainment-page .needs-heading {
+  text-align: end;
+}
+
+/* =====================================
+   ROOM PAGE - FULL SCREEN LAYOUT
+===================================== */
+
+html:has(#roomPage:not(.hidden)),
+body:has(#roomPage:not(.hidden)) {
+  height: 100%;
+  overflow: hidden;
+}
+
+body:has(#roomPage:not(.hidden)) .app-shell {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+body:has(#roomPage:not(.hidden)) .topbar {
+  flex-shrink: 0;
+}
+
+body:has(#roomPage:not(.hidden)) #roomPage {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  padding-top: 12px;
+  padding-bottom: 8px;
+}
+
+body:has(#roomPage:not(.hidden)) .room-page .needs-heading {
+  flex-shrink: 0;
+}
+
+body:has(#roomPage:not(.hidden)) .room-navigation {
+  flex-shrink: 0;
+}
+
+body:has(#roomPage:not(.hidden)) .room-controls {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 820px) {
+
+  .room-page {
+    gap: 10px;
+  }
+
+  .room-navigation {
+    gap: 10px;
+  }
+
+  .room-navigation .need-card {
+    min-height: 80px;
+    border-radius: 17px;
+  }
+
+  .room-controls {
+    gap: 10px;
+  }
+
+  .room-control-card {
+    min-height: 110px;
+    border-radius: 18px;
+  }
+
+}
+
+@media (max-width: 520px) {
+
+  body:has(#roomPage:not(.hidden)) #roomPage {
+    padding-top: 6px;
+    padding-bottom: 5px;
+  }
+
+  .room-navigation {
+    gap: 6px;
+  }
+
+  .room-navigation .need-card {
+    min-height: 65px;
+    padding: 6px;
+    gap: 4px;
+  }
+
+  .room-navigation .need-icon {
+    font-size: 1.4rem;
+  }
+
+  .room-navigation .need-label {
+    font-size: .8rem;
+  }
+
+  .room-controls {
+    gap: 8px;
+  }
+
+  .room-control-card {
+    min-height: 100px;
+    padding: 8px;
+    gap: 7px;
+    border-radius: 16px;
+  }
+
+  .room-control-card .need-icon {
+    font-size: 2rem;
+  }
+
+  .room-control-card .need-label {
+    font-size: 1rem;
+  }
+
+}
+
+
+/* =========================
+   ENTERTAINMENT PAGE
+========================= */
+
+.entertainment-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+.entertainment-page .needs-heading {
+  flex-shrink: 0;
+  text-align: end;
+  margin-bottom: 0;
+}
+
+.entertainment-navigation {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.entertainment-navigation .need-card {
+  min-height: 85px;
+  border-radius: 20px;
+}
+
+.entertainment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.entertainment-card {
+  min-height: 130px;
+  border-radius: 24px;
+  gap: 10px;
+  transition: .2s ease;
+}
+
+.entertainment-card .need-icon {
+  font-size: 2.8rem;
+}
+
+.entertainment-card .need-label {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.entertainment-card:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+}
+
+.entertainment-card:active {
+  transform: scale(.98);
+}
+
+.entertainment-message {
+  flex-shrink: 0;
+  padding: 16px;
+  border: 2px solid var(--accent);
+  border-radius: 18px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 900;
+  text-align: center;
+}
+
+/* Keep entertainment page inside the screen */
+html:has(#entertainmentPage:not(.hidden)),
+body:has(#entertainmentPage:not(.hidden)) {
+  height: 100%;
+  overflow: hidden;
+}
+
+body:has(#entertainmentPage:not(.hidden)) .app-shell {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+body:has(#entertainmentPage:not(.hidden)) #entertainmentPage {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  padding-top: 12px;
+  padding-bottom: 8px;
+}
+
+@media (max-width: 820px) {
+  .entertainment-page {
+    gap: 10px;
+  }
+
+  .entertainment-grid,
+  .entertainment-navigation {
+    gap: 10px;
+  }
+
+  .entertainment-card {
+    min-height: 110px;
+  }
+}
+
+@media (max-width: 520px) {
+  body:has(#entertainmentPage:not(.hidden)) #entertainmentPage {
+    padding-top: 6px;
+    padding-bottom: 5px;
+  }
+
+  .entertainment-navigation {
+    gap: 6px;
+  }
+
+  .entertainment-navigation .need-card {
+    min-height: 65px;
+    padding: 6px;
+  }
+
+  .entertainment-grid {
+    gap: 8px;
+  }
+
+  .entertainment-card {
+    min-height: 100px;
+    padding: 8px;
+    gap: 7px;
+  }
+
+  .entertainment-card .need-icon {
+    font-size: 2rem;
+  }
+
+  .entertainment-card .need-label {
+    font-size: 1.1rem;
+  }
+
+  .entertainment-message {
+    padding: 10px;
+    font-size: 1.25rem;
+  }
+}
+
+/* Selected Entertainment Card */
+.entertainment-card.selected {
+    border: 3px solid var(--accent);
+    background: var(--surface-2);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+    transform: scale(0.98);
+}
+
+/* Entertainment Message */
+.entertainment-message {
+    font-weight: 900;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+}
+
 
