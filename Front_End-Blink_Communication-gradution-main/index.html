@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0c">
+  <title>Blink Communication</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Intro: brand text itself glows for five seconds; no loader, logo icon, or skip button -->
+  <section class="splash" id="splash" aria-label="Blink Communication">
+    <div class="splash-content">
+      <h1 class="splash-title">Blink <span>Communication</span></h1>
+      <p class="splash-subtitle" data-i18n="welcome"> Welcome</p>
+      <div class="intro-line" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <main class="app-shell hidden" id="app">
+    <header class="topbar">
+      <a class="brand-small" href="#" aria-label="Blink Communication">
+        <span class="brand-symbol" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Blink Communication</span>
+      </a>
+      <nav class="top-actions" aria-label="Settings">
+        <button class="utility-button" id="caregiverBtn" type="button" data-i18n="caregiver">لوحة المرافق</button>
+        <button class="utility-button language-button" id="languageBtn" type="button" aria-label="Change language"><svg class="globe-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg><span id="languageLabel" class="sr-only">English</span></button>
+        <button class="icon-button" id="themeBtn" type="button" aria-label="Toggle day and night mode" title="الوضع النهاري"><span id="themeIcon" aria-hidden="true">☾</span></button>
+      </nav>
+    </header>
+
+<!-- LOGIN PAGE -->
+<section class="auth-view login-page" id="loginPage">
+  <div class="auth-card">
+
+    <div class="auth-logo">B</div>
+    <p class="auth-eyebrow" data-auth="welcome">أهلًا بيك في</p>
+    <h1>Blink Communication</h1>
+    <p class="auth-description" data-auth="loginDescription">
+      سجّل دخولك علشان تبدأ التواصل بسهولة.
+    </p>
+
+    <form id="loginForm" class="auth-form">
+      <label for="loginUsername" data-auth="username">اسم المستخدم أو البريد الإلكتروني</label>
+      <input id="loginUsername" type="text" autocomplete="username"
+             required data-placeholder="usernamePlaceholder"
+             placeholder="اكتب اسم المستخدم أو البريد الإلكتروني">
+
+      <label for="loginPassword" data-auth="password">كلمة المرور</label>
+      <input id="loginPassword" type="password"
+             autocomplete="current-password" required
+             data-placeholder="passwordPlaceholder"
+             placeholder="اكتب كلمة المرور">
+
+      <button type="button" class="auth-text-button auth-forgot"
+              id="openForgot" data-auth="forgot">
+        نسيت كلمة المرور؟
+      </button>
+
+      <p class="auth-message" id="loginMessage" role="status"></p>
+
+      <button class="auth-submit" type="submit" data-auth="login">
+        تسجيل الدخول
+      </button>
+
+      <p class="auth-switch">
+        <span data-auth="noAccount">معندكش حساب؟</span>
+        <button type="button" class="auth-text-button"
+                id="openSignup" data-auth="signup">
+          إنشاء حساب
+        </button>
+      </p>
+    </form>
+
+    <p class="auth-footer" data-auth="footer">
+      Blink Communication — تواصل أوضح، كل يوم.
+    </p>
+  </div>
+</section>
+
+<!-- SIGN UP PAGE -->
+<section class="auth-view hidden" id="signupPage">
+  <div class="auth-card">
+    <div class="auth-logo">B</div>
+
+    <h1 data-auth="signupTitle">إنشاء حساب جديد</h1>
+    <p class="auth-description" data-auth="signupDescription">
+      أنشئ حسابك للبدء.
+    </p>
+
+    <form id="signupForm" class="auth-form">
+      <label for="signupUsername" data-auth="usernameOnly">اسم المستخدم</label>
+      <input id="signupUsername" type="text" autocomplete="username"
+             required data-placeholder="chooseUsername"
+             placeholder="اختار اسم مستخدم">
+
+      <label for="signupEmail" data-auth="email">البريد الإلكتروني</label>
+      <input id="signupEmail" type="email" autocomplete="email"
+             required data-placeholder="emailPlaceholder"
+             placeholder="اكتب بريدك الإلكتروني">
+
+      <label for="signupPassword" data-auth="password">كلمة المرور</label>
+      <input id="signupPassword" type="password"
+             autocomplete="new-password" minlength="8" required
+             data-placeholder="newPasswordPlaceholder"
+             placeholder="8 أحرف على الأقل">
+
+      <p class="auth-message" id="signupMessage" role="status"></p>
+
+      <button class="auth-submit" type="submit" data-auth="createAccount">
+        إنشاء الحساب
+      </button>
+
+      <button type="button" class="auth-text-button"
+              id="signupBack" data-auth="backLogin">
+        العودة لتسجيل الدخول
+      </button>
+    </form>
+
+    <p class="auth-footer" data-auth="footer">
+      Blink Communication — تواصل أوضح، كل يوم.
+    </p>
+  </div>
+</section>
+
+<!-- FORGOT PASSWORD PAGE -->
+<section class="auth-view hidden" id="forgotPage">
+  <div class="auth-card">
+    <div class="auth-logo">B</div>
+
+    <h1 data-auth="forgotTitle">استعادة كلمة المرور</h1>
+    <p class="auth-description" data-auth="forgotDescription">
+      أدخل بريدك الإلكتروني لاستعادة حسابك.
+    </p>
+
+    <form id="forgotForm" class="auth-form">
+      <label for="forgotEmail" data-auth="email">البريد الإلكتروني</label>
+      <input id="forgotEmail" type="email" autocomplete="email"
+             required data-placeholder="emailPlaceholder"
+             placeholder="اكتب بريدك الإلكتروني">
+
+      <p class="auth-message" id="forgotMessage" role="status"></p>
+
+      <button class="auth-submit" type="submit" data-auth="reset">
+        استعادة كلمة المرور
+      </button>
+
+      <button type="button" class="auth-text-button"
+              id="forgotBack" data-auth="backLogin">
+        العودة لتسجيل الدخول
+      </button>
+    </form>
+
+    <p class="auth-footer" data-auth="footer">
+      Blink Communication — تواصل أوضح، كل يوم.
+    </p>
+  </div>
+</section>
+
+    <section class="welcome-row hidden">
+      <p class="eyebrow" data-i18n="dashboardLabel">مساحة التواصل المساعدة</p>
+      <h2 data-i18n="dashboardTitle">إيه اللي محتاج تقوله؟</h2>
+      <p class="welcome-description" data-i18n="dashboardDesc">اختار كارت للتعبير عن احتياجك بسرعة ووضوح.</p>
+    </section>
+
+    <section class="cards-grid hidden" aria-label="Communication categories">
+      <button class="category-card" type="button" data-category="needs">
+        <span class="card-icon icon-needs" aria-hidden="true">♡</span>
+        <span class="card-title" data-i18n="needs">الاحتياجات</span>
+        <span class="card-description" data-i18n="needsDesc">ماء، أكل، حمام والمزيد</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+      <button class="category-card" type="button" data-category="medicine">
+        <span class="card-icon icon-medicine" aria-hidden="true">✚</span>
+        <span class="card-title" data-i18n="medicine">الدواء</span>
+        <span class="card-description" data-i18n="medicineDesc">دوائي أو أحتاج مساعدة</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+      <button class="category-card" type="button" data-category="keyboard">
+        <span class="card-icon icon-keyboard" aria-hidden="true">⌨</span>
+        <span class="card-title" data-i18n="keyboard">الكيبورد</span>
+        <span class="card-description" data-i18n="keyboardDesc">اكتب رسالة بطريقتك</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+      <button class="category-card" type="button" data-category="room">
+        <span class="card-icon icon-room" aria-hidden="true">⌂</span>
+        <span class="card-title" data-i18n="room">غرفتي</span>
+        <span class="card-description" data-i18n="roomDesc">الراحة والأشياء حولي</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+      <button class="category-card" type="button" data-category="fun">
+        <span class="card-icon icon-fun" aria-hidden="true">✦</span>
+        <span class="card-title" data-i18n="fun">الترفيه</span>
+        <span class="card-description" data-i18n="funDesc">أنشطة ووقت ممتع</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+      <button class="category-card emergency-card" type="button" data-category="emergency">
+        <span class="card-icon icon-emergency" aria-hidden="true">!</span>
+        <span class="card-title" data-i18n="emergency">زرار الطوارئ</span>
+        <span class="card-description" data-i18n="emergencyDesc">محتاج مساعدة حالًا</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+    </section>
+
+   <section class="pause-card hidden" aria-label="Pause controls">
+      <div class="pause-copy">
+        <span class="pause-indicator" aria-hidden="true"></span>
+        <div>
+          <h3 data-i18n="pauseTitle">إيقاف مؤقت</h3>
+          <p data-i18n="pauseDesc">اضغط لإيقاف التفاعل مؤقتًا</p>
+        </div>
+      </div>
+      <button class="pause-button" id="pauseBtn" type="button" aria-label="Pause interaction">
+        <span class="pause-symbol" id="pauseSymbol" aria-hidden="true"><i></i><i></i></span>
+        <span id="pauseLabel" data-i18n="pauseAction">إيقاف مؤقت</span>
+      </button>
+    </section>
+        <div class="pause-overlay hidden" id="pauseOverlay">
+      <div class="pause-overlay-card">
+        <div class="pause-big-icon" aria-hidden="true">
+          <i></i><i></i>
+        </div>
+        <h2 data-i18n="pausedTitle">تم إيقاف التفاعل مؤقتًا</h2>
+        <p data-i18n="pausedDesc">اضغط متابعة للرجوع إلى الصفحة.</p>
+        <button class="primary-button" id="resumeBtn" type="button" data-i18n="resume">متابعة</button>
+      </div>
+    </div>
+
+    <!-- Caregiver Dialog -->
+    <dialog class="modal" id="caregiverDialog">
+      <div class="modal-inner">
+        <form method="dialog">
+          <button class="modal-close" type="submit" aria-label="Close">×</button>
+        </form>
+        <h2 data-i18n="caregiverTitle">لوحة المرافق</h2>
+        <p class="muted" data-i18n="caregiverText">إعدادات المرافق</p>
+        <button class="primary-button" type="button" onclick="document.getElementById('caregiverDialog').close()" data-i18n="okay">حسنًا</button>
+      </div>
+    </dialog>
+
+    <!-- Category Dialog -->
+    <dialog class="modal" id="categoryDialog">
+      <div class="modal-inner">
+        <form method="dialog">
+          <button class="modal-close" type="submit" aria-label="Close">×</button>
+        </form>
+        <div class="modal-icon" id="categoryModalIcon" aria-hidden="true"></div>
+        <h2 id="categoryModalTitle"></h2>
+        <p class="muted" data-i18n="categoryComing">سيتم إضافة المحتوى قريبًا.</p>
+        <p data-i18n="nextStep">اختر ما تحتاج إليه.</p>
+        <button class="primary-button" type="button" onclick="document.getElementById('categoryDialog').close()" data-i18n="okay">حسنًا</button>
+      </div>
+    </dialog>
+
+    <!-- Emergency Dialog -->
+    <dialog class="modal" id="emergencyDialog">
+      <div class="modal-inner">
+        <form method="dialog">
+          <button class="modal-close" type="submit" aria-label="Close">×</button>
+        </form>
+        <div class="alert-icon" aria-hidden="true">!</div>
+        <h2 data-i18n="emergencyTitle">حالة طارئة</h2>
+        <p class="muted" data-i18n="emergencyText">اطلب المساعدة عند الحاجة.</p>
+        <button class="primary-button" type="submit" formmethod="dialog" data-i18n="close" onclick="document.getElementById('emergencyDialog').close()">إغلاق</button>
+      </div>
+    </dialog>
+
+    <!-- Needs Page -->
+    <section class="needs-page hidden" id="needsPage" aria-labelledby="needsTitle">
+      <div class="needs-heading">
+        <p class="needs-eyebrow" data-i18n="needsPrompt">اختار اللي محتاجه</p>
+        <h1 id="needsTitle" data-i18n="needs">الاحتياجات</h1>
+      </div>
+
+<div class="needs-grid needs-navigation-grid">
+
+  <button class="need-card" id="needsBackBtn" type="button">
+    <span class="need-icon">↩️</span>
+    <span class="need-label" data-i18n="needsBack">الرجوع</span>
+  </button>
+
+  <button class="need-card needs-emergency-card" id="needsEmergencyBtn" type="button">
+    <span class="need-icon">❗</span>
+    <span class="need-label" data-i18n="emergency">زرار الطوارئ</span>
+  </button>
+
+  <button class="need-card" id="needsNextBtn" type="button">
+    <span class="need-icon">➡️</span>
+    <span class="need-label" data-i18n="needsNext">التالي</span>
+  </button>
+
+</div>
+
+      <div class="needs-grid">
+        <button class="need-card" type="button" data-need="water">
+          <span class="need-icon">💧</span>
+          <span class="need-label" data-i18n="needWater">ماء</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="food">
+          <span class="need-icon">🍽️</span>
+          <span class="need-label" data-i18n="needFood">أكل</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="bathroom">
+          <span class="need-icon">🚻</span>
+          <span class="need-label" data-i18n="needBathroom">حمام</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="pain">
+          <span class="need-icon">😣</span>
+          <span class="need-label" data-i18n="needPain">ألم</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="cold">
+          <span class="need-icon">🥶</span>
+          <span class="need-label" data-i18n="needCold">برد</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="hot">
+          <span class="need-icon">🥵</span>
+          <span class="need-label" data-i18n="needHot">حر</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="family">
+          <span class="need-icon">👨‍👩‍👧</span>
+          <span class="need-label" data-i18n="needFamily">أسرتي</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="sad">
+          <span class="need-icon">😟</span>
+          <span class="need-label" data-i18n="needSad">حزين</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="thanks">
+          <span class="need-icon">🙏</span>
+          <span class="need-label" data-i18n="needThanks">شكرًا</span>
+        </button>
+      </div>
+
+      <p class="needs-feedback hidden" id="needsFeedback" role="status" aria-live="polite"></p>
+    </section>
+
+<!-- Medicine Page -->
+<section class="needs-page medicine-page hidden" id="medicinePage"
+         aria-labelledby="medicineTitle">
+
+  <div class="needs-heading">
+    <p class="needs-eyebrow">Blink Communication</p>
+   <h1 id="medicineTitle" data-i18n="medicinePageTitle">
+  موعد الدواء
+</h1>
+
+<p class="needs-description" id="medicineStatus"
+   data-i18n="medicinePageStatus" role="status">
+  حان وقت الدواء الآن
+</p>
+  </div>
+
+<!-- Navigation row: يظهر أولًا -->
+<div class="needs-grid needs-navigation-grid medicine-navigation">
+
+  <!-- الرجوع -->
+  <button class="need-card" id="medicineBackBtn" type="button">
+    <span class="need-icon">↩️</span>
+    <span class="need-label" data-i18n="needsBack">الرجوع</span>
+  </button>
+
+  <!-- الطوارئ -->
+  <button class="need-card needs-emergency-card"
+          id="medicineEmergencyBtn" type="button">
+    <span class="need-icon">❗</span>
+    <span class="need-label" data-i18n="emergency">زرار الطوارئ</span>
+  </button>
+
+  <!-- التالي -->
+  <button class="need-card" id="medicineNextBtn" type="button">
+    <span class="need-icon">➡️</span>
+    <span class="need-label" data-i18n="needsNext">التالي</span>
+  </button>
+
+</div>
+
+<!-- Medicine actions: يظهر ثانيًا -->
+<div class="needs-grid medicine-actions">
+
+  <button class="need-card medicine-taken" id="medicineTakenBtn"
+          type="button">
+    <span class="need-icon">✅</span>
+    <span class="need-label" data-i18n="medicineTaken">أخدت الدواء</span>
+  </button>
+
+  <button class="need-card medicine-reminder" id="medicineReminderBtn"
+          type="button">
+    <span class="need-icon">⏰</span>
+    <span class="need-label" data-i18n="medicineReminder">فكرني بعد 10 دقايق</span>
+  </button>
+
+  <button class="need-card medicine-sos" id="medicineSosBtn"
+          type="button">
+    <span class="need-icon">🆘</span>
+    <span class="need-label" data-i18n="medicineHelp">محتاج مساعدة</span>
+  </button>
+
+</div>
+
+</section>
+
+<!-- =========================
+     KEYBOARD PAGE
+========================= -->
+
+<section class="needs-page keyboard-page hidden" id="keyboardPage">
+
+  <!-- Navigation -->
+  <div class="needs-grid needs-navigation-grid keyboard-navigation">
+
+    <button class="need-card" id="keyboardBackBtn" type="button">
+      <span class="need-icon">↩️</span>
+      <span class="need-label">الرجوع</span>
+    </button>
+
+    <button class="need-card needs-emergency-card"
+            id="keyboardEmergencyBtn" type="button">
+      <span class="need-icon">❗</span>
+      <span class="need-label">زرار الطوارئ</span>
+    </button>
+
+    <button class="need-card" id="keyboardNextBtn" type="button">
+      <span class="need-icon">➡️</span>
+      <span class="need-label">التالي</span>
+    </button>
+
+  </div>
+
+  <!-- Message Output -->
+  <div class="keyboard-output">
+    <span class="keyboard-output-title">رسالتي</span>
+    <div id="keyboardOutput" aria-live="polite">
+      الكلام اللي هختاره هيظهر هنا
+    </div>
+  </div>
+
+  <!-- Arabic Letter Groups -->
+  <div class="keyboard-groups">
+
+    <button class="keyboard-group" data-group="0" type="button">
+      <span>ا ب ت ث ج ح</span>
+      <small>مجموعة</small>
+    </button>
+
+    <button class="keyboard-group" data-group="1" type="button">
+      <span>خ د ذ ر ز</span>
+      <small>مجموعة</small>
+    </button>
+
+    <button class="keyboard-group" data-group="2" type="button">
+      <span>س ش ص ض ط ظ</span>
+      <small>مجموعة</small>
+    </button>
+
+    <button class="keyboard-group" data-group="3" type="button">
+      <span>ط ع غ ف ق</span>
+      <small>مجموعة</small>
+    </button>
+
+    <button class="keyboard-group" data-group="4" type="button">
+      <span>ك ل م ن ه</span>
+      <small>مجموعة</small>
+    </button>
+
+    <button class="keyboard-group" data-group="5" type="button">
+      <span>و ي ة ء</span>
+      <small>مجموعة</small>
+    </button>
+
+  </div>
+
+<!-- Keyboard Actions: Speak + Clear -->
+
+<div class="keyboard-actions">
+
+    <!-- Speak Button -->
+    <button class="keyboard-action keyboard-speak-button"
+            id="keyboardSpeakBtn" type="button">
+
+        <span>🔊</span>
+        <strong>نطق</strong>
+
+    </button>
+
+    <!-- Clear Message Button -->
+    <button class="keyboard-action keyboard-clear-button"
+            id="keyboardClearBtn" type="button">
+
+        <span>🗑️</span>
+        <strong>حذف</strong>
+
+    </button>
+
+</div>
+
+</section>
+
+<!-- =========================
+     LETTERS POPUP
+========================= -->
+
+<!-- Letters Popup -->
+<dialog class="letter-dialog" id="letterDialog">
+
+  <div class="letter-dialog-content">
+
+    <!-- Popup Title -->
+    <h2 id="letterDialogTitle">اختار حرف</h2>
+
+    <!-- Shared Message Display -->
+    <div class="popup-message-box">
+
+      <span class="popup-message-title">رسالتي</span>
+
+      <div id="popupKeyboardOutput" aria-live="polite">
+        الكلام اللي هختاره هيظهر هنا
+      </div>
+
+    </div>
+
+    <!-- Letters -->
+    <div class="letter-grid" id="letterGrid"></div>
+
+    <!-- Popup Actions -->
+    <div class="popup-keyboard-actions">
+
+      <button class="popup-action-button"
+              id="popupSpaceBtn" type="button">
+        <span>ـ</span>
+        <strong>مسافة</strong>
+      </button>
+
+      <button class="popup-action-button"
+              id="popupDeleteBtn" type="button">
+        <span>⌫</span>
+        <strong>حذف</strong>
+      </button>
+
+      <button class="popup-action-button popup-exit-button"
+              id="letterExitBtn" type="button">
+        <span>↩️</span>
+        <strong>خروج</strong>
+      </button>
+
+    </div>
+
+  </div>
+
+</dialog>
+
+<!-- =========================
+     MY ROOM PAGE
+========================= -->
+
+<section class="needs-page room-page hidden"
+         id="roomPage">
+
+  <!-- Page Title -->
+  <div class="needs-heading">
+    <p class="needs-eyebrow">Blink Communication</p>
+    <h1 data-room-text="title">غرفتي</h1>
+  </div>
+
+  <!-- Row 1: Navigation -->
+  <div class="needs-grid needs-navigation-grid room-navigation">
+
+    <button class="need-card" id="roomBackBtn" type="button">
+      <span class="need-icon">↩️</span>
+      <span class="need-label" data-room-text="back">الرجوع</span>
+    </button>
+
+    <button class="need-card needs-emergency-card"
+            id="roomEmergencyBtn" type="button">
+      <span class="need-icon">❗</span>
+      <span class="need-label" data-room-text="emergency">
+        زرار الطوارئ
+      </span>
+    </button>
+
+    <button class="need-card" id="roomNextBtn" type="button">
+      <span class="need-icon">➡️</span>
+      <span class="need-label" data-room-text="next">التالي</span>
+    </button>
+
+  </div>
+
+  <!-- Row 2: Room Controls -->
+  <div class="needs-grid room-controls">
+
+    <!-- Lighting -->
+    <button class="need-card room-control-card"
+            id="roomLightBtn" type="button">
+
+      <span class="need-icon room-light-icon">💡</span>
+
+      <span class="need-label" data-room-text="light">
+        الإضاءة
+      </span>
+
+    </button>
+
+    <!-- Fan -->
+    <button class="need-card room-control-card"
+            id="roomFanBtn" type="button">
+
+      <span class="need-icon room-fan-icon">🌀</span>
+
+      <span class="need-label" data-room-text="fan">
+        المروحة
+      </span>
+
+    </button>
+
+  </div>
+
+</section>
+
+<!-- ENTERTAINMENT PAGE -->
+<section class="needs-page entertainment-page hidden" id="entertainmentPage">
+
+  <div class="needs-heading">
+    <p class="needs-eyebrow">Blink Communication</p>
+    <h1 data-entertainment-text="title">الترفيه</h1>
+  </div>
+
+  <!-- Navigation -->
+  <div class="needs-grid needs-navigation-grid entertainment-navigation">
+
+    <button class="need-card" id="entertainmentBackBtn" type="button">
+      <span class="need-icon">↩️</span>
+      <span class="need-label" data-entertainment-text="back">الرجوع</span>
+    </button>
+
+    <button class="need-card needs-emergency-card"
+            id="entertainmentEmergencyBtn" type="button">
+      <span class="need-icon">❗</span>
+      <span class="need-label" data-entertainment-text="emergency">زرار الطوارئ</span>
+    </button>
+
+    <button class="need-card" id="entertainmentNextBtn" type="button">
+      <span class="need-icon">➡️</span>
+      <span class="need-label" data-entertainment-text="next">التالي</span>
+    </button>
+
+  </div>
+
+  <!-- Entertainment Choices -->
+  <div class="needs-grid entertainment-grid">
+
+    <button class="need-card entertainment-card" data-choice="quran" type="button">
+      <span class="need-icon">📖</span>
+      <span class="need-label" data-entertainment-text="quran">قرآن</span>
+    </button>
+
+    <button class="need-card entertainment-card" data-choice="youtube" type="button">
+      <span class="need-icon">▶️</span>
+      <span class="need-label" data-entertainment-text="youtube">يوتيوب</span>
+    </button>
+
+    <button class="need-card entertainment-card" data-choice="music" type="button">
+      <span class="need-icon">🎵</span>
+      <span class="need-label" data-entertainment-text="music">موسيقى</span>
+    </button>
+
+    <button class="need-card entertainment-card" data-choice="movie" type="button">
+      <span class="need-icon">🎬</span>
+      <span class="need-label" data-entertainment-text="movie">فيلم</span>
+    </button>
+
+  </div>
+
+  <!-- Selected Request -->
+  <div class="entertainment-message hidden"
+       id="entertainmentMessage"
+       aria-live="polite">
+  </div>
+
+</section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
