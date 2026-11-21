@@ -1,0 +1,13 @@
+{
+  "camera": {"index": 0, "width": 640, "height": 480, "fps": 30},
+  "swap_eyes": false,
+  "gesture": {
+    "wink_min_s": 0.22,
+    "long_blink_s": 0.9,
+    "cooldown_s": 0.5,
+    "right_wink_event": "NEXT",
+    "left_wink_event": "PREVIOUS"
+  },
+  "head": {"yaw_max_deg": 35, "pitch_max_deg": 30, "speed_max_dps": 90},
+  "fusion": {"use_blendshapes": true, "blendshape_weight": 0.5}
+}
