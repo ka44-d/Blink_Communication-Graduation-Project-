@@ -1,0 +1,272 @@
+
+/* Needs page */
+.needs-page {
+  width: 100%;
+  padding-top: 20px;
+}
+
+.needs-heading {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.needs-eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.needs-heading h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+}
+
+.needs-description {
+  color: var(--muted);
+}
+
+.needs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.need-card {
+  min-width: 0;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 16px;
+  border: 2px solid var(--border);
+  border-radius: 28px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  transition: border-color .2s, background .2s, transform .2s;
+}
+
+.need-card:hover,
+.need-card:focus-visible {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+
+.need-card:active {
+  transform: scale(.98);
+}
+
+.need-icon {
+  font-size: 2.8rem;
+  line-height: 1.2;
+}
+
+.need-label {
+  font-size: 1.65rem;
+  font-weight: 800;
+}
+
+.needs-feedback {
+  text-align: center;
+  margin: 14px 0 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 820px) {
+  .needs-page {
+    padding-top: 14px;
+  }
+
+  .needs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .need-card {
+    min-height: 125px;
+    border-radius: 20px;
+  }
+
+  .need-icon {
+    font-size: 2.2rem;
+  }
+
+  .need-label {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .needs-grid {
+    gap: 8px;
+  }
+
+  .need-card {
+    min-height: 110px;
+    padding: 10px;
+  }
+}
+
+.needs-navigation-grid {
+  margin-bottom: 14px;
+}
+
+.needs-emergency-card {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.needs-emergency-card .need-icon,
+.needs-emergency-card .need-label {
+  color: var(--danger);
+}
+
+/* Needs page: responsive, no scrolling */
+html:has(#needsPage:not(.hidden)),
+body:has(#needsPage:not(.hidden)) {
+  height: 100%;
+  overflow: hidden;
+}
+
+body:has(#needsPage:not(.hidden)) .app-shell {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+body:has(#needsPage:not(.hidden)) #needsPage {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(6px, 1.5vh, 16px);
+  padding-bottom: 8px;
+}
+
+body:has(#needsPage:not(.hidden)) .needs-heading {
+  flex: 0 0 auto;
+  margin-bottom: clamp(8px, 1.5vh, 16px);
+}
+
+body:has(#needsPage:not(.hidden)) .needs-heading h1 {
+  font-size: clamp(1.5rem, 3.2vh, 2.4rem);
+}
+
+body:has(#needsPage:not(.hidden)) .needs-navigation-grid {
+  flex: 0 0 auto;
+  margin-bottom: clamp(8px, 1.5vh, 14px);
+  gap: clamp(6px, 1vw, 14px);
+}
+
+body:has(#needsPage:not(.hidden)) .needs-navigation-grid .need-card {
+  min-height: clamp(64px, 13vh, 110px);
+  padding: 8px;
+  gap: 4px;
+}
+
+body:has(#needsPage:not(.hidden)) .needs-navigation-grid .need-icon {
+  font-size: clamp(1.2rem, 3vh, 2rem);
+}
+
+body:has(#needsPage:not(.hidden)) .needs-navigation-grid .need-label {
+  font-size: clamp(.85rem, 2.2vh, 1.3rem);
+}
+
+body:has(#needsPage:not(.hidden)) .needs-grid:not(.needs-navigation-grid) {
+  flex: 1 1 auto;
+  min-height: 0;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: clamp(6px, 1vh, 12px);
+}
+
+body:has(#needsPage:not(.hidden)) .needs-grid:not(.needs-navigation-grid) .need-card {
+  min-height: 0;
+  padding: 6px;
+  gap: clamp(4px, 1vh, 12px);
+}
+
+body:has(#needsPage:not(.hidden)) .needs-grid:not(.needs-navigation-grid) .need-icon {
+  font-size: clamp(1.3rem, 4vh, 2.7rem);
+}
+
+body:has(#needsPage:not(.hidden)) .needs-grid:not(.needs-navigation-grid) .need-label {
+  font-size: clamp(.85rem, 2.8vh, 1.5rem);
+}
+
+body:has(#needsPage:not(.hidden)) .needs-feedback {
+  flex: 0 0 auto;
+  margin: 4px 0 0;
+  font-size: .85rem;
+}
+
+@media (max-width: 600px) {
+  body:has(#needsPage:not(.hidden)) .app-shell {
+    padding-inline: 10px;
+  }
+
+  body:has(#needsPage:not(.hidden)) #needsPage {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  body:has(#needsPage:not(.hidden)) .needs-heading {
+    margin-bottom: 7px;
+  }
+
+  body:has(#needsPage:not(.hidden)) .needs-heading h1 {
+    font-size: clamp(1.35rem, 4vh, 1.8rem);
+  }
+
+  body:has(#needsPage:not(.hidden)) .needs-eyebrow {
+    font-size: .8rem;
+    margin-bottom: 2px;
+  }
+
+  body:has(#needsPage:not(.hidden)) .needs-navigation-grid {
+    gap: 6px;
+    margin-bottom: 7px;
+  }
+
+  body:has(#needsPage:not(.hidden)) .needs-navigation-grid .need-card {
+    min-height: clamp(54px, 10vh, 76px);
+    border-radius: 15px;
+  }
+
+  body:has(#needsPage:not(.hidden)) .needs-grid:not(.needs-navigation-grid) {
+    gap: 7px;
+  }
+
+  body:has(#needsPage:not(.hidden)) .needs-grid:not(.needs-navigation-grid) .need-card {
+    border-radius: 16px;
+  }
+
+  body:has(#needsPage:not(.hidden)) .needs-grid:not(.needs-navigation-grid) .need-icon {
+    font-size: clamp(1.2rem, 3.5vh, 2rem);
+  }
+
+  body:has(#needsPage:not(.hidden)) .needs-grid:not(.needs-navigation-grid) .need-label {
+    font-size: clamp(.8rem, 2.2vh, 1.1rem);
+  }
+}
+
+/* Very short screens: compact spacing */
+@media (max-height: 650px) {
+  body:has(#needsPage:not(.hidden)) .needs-heading {
+    margin-bottom: 5px;
+  }
+
+  body:has(#needsPage:not(.hidden)) .needs-navigation-grid .need-card {
+    min-height: 48px;
+  }
+
+  body:has(#needsPage:not(.hidden)) .needs-grid:not(.needs-navigation-grid) {
+    gap: 5px;
+  }
+}

@@ -1,0 +1,197 @@
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0c">
+  <title>Blink Communication - Keyboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/general.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/needs.css">
+  <link rel="stylesheet" href="../css/keyboard.css">
+</head>
+<body>
+
+  <main class="app-shell" id="app">
+
+    <header class="topbar">
+      <a class="brand-small" href="#" aria-label="Blink Communication">
+        <span class="brand-symbol" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Blink Communication</span>
+      </a>
+
+      <nav class="top-actions" aria-label="Settings">
+        <button class="utility-button" id="caregiverBtn" type="button" data-i18n="caregiver">لوحة المرافق</button>
+
+        <button class="utility-button language-button" id="languageBtn" type="button" aria-label="Change language">
+          <svg class="globe-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>
+          </svg>
+          <span id="languageLabel" class="sr-only">English</span>
+        </button>
+
+        <button class="icon-button" id="themeBtn" type="button" aria-label="Toggle day and night mode" title="الوضع النهاري">
+          <span id="themeIcon" aria-hidden="true">☾</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- KEYBOARD PAGE -->
+    <section class="needs-page keyboard-page" id="keyboardPage">
+
+      <!-- Navigation -->
+      <div class="needs-grid needs-navigation-grid keyboard-navigation">
+
+        <button class="need-card" id="keyboardBackBtn" type="button">
+          <span class="need-icon">↩️</span>
+          <span class="need-label">الرجوع</span>
+        </button>
+
+        <button class="need-card needs-emergency-card"
+                id="keyboardEmergencyBtn" type="button">
+          <span class="need-icon">❗</span>
+          <span class="need-label">زرار الطوارئ</span>
+        </button>
+
+        <button class="need-card" id="keyboardNextBtn" type="button">
+          <span class="need-icon">➡️</span>
+          <span class="need-label">التالي</span>
+        </button>
+
+      </div>
+
+      <!-- Message Output -->
+      <div class="keyboard-output">
+        <span class="keyboard-output-title">رسالتي</span>
+        <div id="keyboardOutput" aria-live="polite">
+          الكلام اللي هختاره هيظهر هنا
+        </div>
+      </div>
+
+      <!-- Arabic Letter Groups -->
+      <div class="keyboard-groups">
+
+        <button class="keyboard-group" data-group="0" type="button">
+          <span>ا ب ت ث ج ح</span>
+          <small>مجموعة</small>
+        </button>
+
+        <button class="keyboard-group" data-group="1" type="button">
+          <span>خ د ذ ر ز</span>
+          <small>مجموعة</small>
+        </button>
+
+        <button class="keyboard-group" data-group="2" type="button">
+          <span>س ش ص ض ط ظ</span>
+          <small>مجموعة</small>
+        </button>
+
+        <button class="keyboard-group" data-group="3" type="button">
+          <span>ط ع غ ف ق</span>
+          <small>مجموعة</small>
+        </button>
+
+        <button class="keyboard-group" data-group="4" type="button">
+          <span>ك ل م ن ه</span>
+          <small>مجموعة</small>
+        </button>
+
+        <button class="keyboard-group" data-group="5" type="button">
+          <span>و ي ة ء</span>
+          <small>مجموعة</small>
+        </button>
+
+      </div>
+
+      <!-- Keyboard Actions: Speak + Clear -->
+      <div class="keyboard-actions">
+
+        <button class="keyboard-action keyboard-speak-button"
+                id="keyboardSpeakBtn" type="button">
+          <span>🔊</span>
+          <strong>نطق</strong>
+        </button>
+
+        <button class="keyboard-action keyboard-clear-button"
+                id="keyboardClearBtn" type="button">
+          <span>🗑️</span>
+          <strong>حذف</strong>
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- LETTERS POPUP -->
+    <dialog class="letter-dialog" id="letterDialog">
+
+      <div class="letter-dialog-content">
+
+        <h2 id="letterDialogTitle">اختار حرف</h2>
+
+        <div class="popup-message-box">
+          <span class="popup-message-title">رسالتي</span>
+
+          <div id="popupKeyboardOutput" aria-live="polite">
+            الكلام اللي هختاره هيظهر هنا
+          </div>
+        </div>
+
+        <div class="letter-grid" id="letterGrid"></div>
+
+        <div class="popup-keyboard-actions">
+
+          <button class="popup-action-button"
+                  id="popupSpaceBtn" type="button">
+            <span>ـ</span>
+            <strong>مسافة</strong>
+          </button>
+
+          <button class="popup-action-button"
+                  id="popupDeleteBtn" type="button">
+            <span>⌫</span>
+            <strong>حذف</strong>
+          </button>
+
+          <button class="popup-action-button popup-exit-button"
+                  id="letterExitBtn" type="button">
+            <span>↩️</span>
+            <strong>خروج</strong>
+          </button>
+
+        </div>
+
+      </div>
+    </dialog>
+
+    <!-- Emergency Dialog -->
+    <dialog class="modal" id="emergencyDialog">
+      <div class="modal-inner">
+        <form method="dialog">
+          <button class="modal-close" type="submit" aria-label="Close">×</button>
+        </form>
+        <div class="alert-icon" aria-hidden="true">!</div>
+        <h2 data-i18n="emergencyTitle">حالة طارئة</h2>
+        <p class="muted" data-i18n="emergencyText">اطلب المساعدة عند الحاجة.</p>
+        <button class="primary-button" type="submit" formmethod="dialog" data-i18n="close" onclick="document.getElementById('emergencyDialog').close()">إغلاق</button>
+      </div>
+    </dialog>
+
+  </main>
+
+  <script src="../js/general/translations.js"></script>
+  <script src="../js/general/shared.js"></script>
+  <script src="../js/general/language.js"></script>
+  <script src="../js/general/theme.js"></script>
+  <script src="../js/general/navigation.js"></script>
+  <script src="../js/pages/keyboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0c">
+
+  <title>Blink Communication - Login</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="css/general.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+
+  <!-- SPLASH SCREEN -->
+  <section class="splash" id="splash" aria-label="Blink Communication">
+    <div class="splash-content">
+      <h1 class="splash-title">
+        Blink <span>Communication</span>
+      </h1>
+
+      <p class="splash-subtitle" data-i18n="welcome">
+        Welcome
+      </p>
+
+      <div class="intro-line" aria-hidden="true"></div>
+    </div>
+  </section>
+
+
+  <!-- APPLICATION -->
+  <main class="app-shell hidden" id="app">
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+      <a class="brand-small" href="index.html" aria-label="Blink Communication">
+        <span class="brand-symbol" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+
+        <span>Blink Communication</span>
+      </a>
+
+      <nav class="top-actions" aria-label="Settings">
+
+        <button
+          class="utility-button"
+          id="caregiverBtn"
+          type="button"
+          data-i18n="caregiver"
+        >
+          لوحة المرافق
+        </button>
+
+        <button
+          class="utility-button language-button"
+          id="languageBtn"
+          type="button"
+          aria-label="Change language"
+        >
+          <svg
+            class="globe-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>
+          </svg>
+
+          <span id="languageLabel" class="sr-only">English</span>
+        </button>
+
+        <button
+          class="icon-button"
+          id="themeBtn"
+          type="button"
+          aria-label="Toggle day and night mode"
+          title="الوضع النهاري"
+        >
+          <span id="themeIcon" aria-hidden="true">☾</span>
+        </button>
+
+      </nav>
+    </header>
+
+
+    <!-- LOGIN PAGE -->
+    <section class="auth-view login-page" id="loginPage">
+
+      <div class="auth-card">
+
+        <div class="auth-logo">B</div>
+
+        <p class="auth-eyebrow" data-auth="welcome">
+          أهلًا بيك في
+        </p>
+
+        <h1>Blink Communication</h1>
+
+        <p class="auth-description" data-auth="loginDescription">
+          سجّل دخولك علشان تبدأ التواصل بسهولة.
+        </p>
+
+        <form id="loginForm" class="auth-form">
+
+          <label for="loginUsername" data-auth="username">
+            اسم المستخدم أو البريد الإلكتروني
+          </label>
+
+          <input
+            id="loginUsername"
+            type="text"
+            autocomplete="username"
+            required
+            data-placeholder="usernamePlaceholder"
+            placeholder="اكتب اسم المستخدم أو البريد الإلكتروني"
+          >
+
+          <label for="loginPassword" data-auth="password">
+            كلمة المرور
+          </label>
+
+          <input
+            id="loginPassword"
+            type="password"
+            autocomplete="current-password"
+            required
+            data-placeholder="passwordPlaceholder"
+            placeholder="اكتب كلمة المرور"
+          >
+
+          <button
+            type="button"
+            class="auth-text-button auth-forgot"
+            id="openForgot"
+            data-auth="forgot"
+          >
+            نسيت كلمة المرور؟
+          </button>
+
+          <p class="auth-message" id="loginMessage" role="status"></p>
+
+          <button
+            class="auth-submit"
+            type="submit"
+            data-auth="login"
+          >
+            تسجيل الدخول
+          </button>
+
+          <p class="auth-switch">
+
+            <span data-auth="noAccount">
+              معندكش حساب؟
+            </span>
+
+            <button
+              type="button"
+              class="auth-text-button"
+              id="openSignup"
+              data-auth="signup"
+            >
+              إنشاء حساب
+            </button>
+
+          </p>
+
+        </form>
+
+        <p class="auth-footer" data-auth="footer">
+          Blink Communication — تواصل أوضح، كل يوم.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- JAVASCRIPT FILES -->
+  <script src="js/general/translations.js"></script>
+  <script src="js/general/shared.js"></script>
+  <script src="js/general/language.js"></script>
+  <script src="js/general/theme.js"></script>
+  <script src="js/general/navigation.js"></script>
+  <script src="js/pages/auth.js"></script>
+
+</body>
+</html>

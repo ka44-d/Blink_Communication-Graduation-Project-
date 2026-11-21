@@ -1,0 +1,280 @@
+
+/* Blink Communication v2 — near-black night palette, accessible contrast */
+:root {
+  color-scheme: dark;
+  --bg: #080b0c;
+  --bg-soft: #0b1112;
+  --surface: #101b1c;
+  --surface-2: #152526;
+  --surface-3: #1b3031;
+  --border: #294344;
+  --text: #f2f7f6;
+  --muted: #9fb9b8;
+  --accent: #63d7cf;
+  --accent-bright: #8be8df;
+  --accent-soft: rgba(99,215,207,.12);
+  --danger: #e66b70;
+  --danger-soft: rgba(230,107,112,.12);
+  --shadow: 0 20px 60px rgba(0,0,0,.28);
+  --radius: 23px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Cairo", "Inter", sans-serif;
+  transition: background .3s,color .3s;
+}
+
+button,a {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Splash Screen */
+.splash {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 40%, #132829 0%, #0a1415 48%, #070a0b 100%);
+}
+
+.splash::before,
+.splash::after {
+  content:"";
+  position:absolute;
+  width:340px;
+  height:340px;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:.1;
+  background:var(--accent);
+}
+
+.splash::before {
+  top:-190px;
+  inset-inline-start:-100px;
+}
+
+.splash::after {
+  bottom:-210px;
+  inset-inline-end:-100px;
+  background:#5977b8;
+}
+
+.splash-content {
+  position:relative;
+  z-index:1;
+  width:min(92%,1000px);
+  text-align:center;
+  animation: introFloat 5s ease-in-out both;
+}
+
+.splash-title {
+  margin:0;
+  font-family:"Inter","Cairo",sans-serif;
+  font-size:clamp(2.4rem,7vw,5rem);
+  line-height:1.15;
+  font-weight:800;
+  letter-spacing:-.065em;
+  color:var(--accent);
+  animation: brandGlow 5s ease-in-out both;
+}
+
+.splash-subtitle {
+  margin:28px 0 0;
+  color:#b4cecc;
+  font-size:clamp(.95rem,2vw,1.15rem);
+  opacity:0;
+  animation: subtitleIn .8s ease 1s forwards;
+}
+
+.intro-line {
+  width:0;
+  height:3px;
+  margin:28px auto 0;
+  border-radius:99px;
+  background:var(--accent);
+  box-shadow:0 0 22px rgba(99,215,207,.5);
+  animation: lineGrow 1.2s ease 1.2s forwards;
+}
+
+@keyframes brandGlow {
+  0% {
+    opacity:.45;
+    filter:brightness(.55) blur(1px);
+    text-shadow:0 0 0 transparent;
+    transform:scale(.985);
+  }
+  20% {
+    opacity:1;
+    filter:brightness(1.2);
+    text-shadow:0 0 25px rgba(99,215,207,.38);
+  }
+  36% {
+    opacity:.78;
+    filter:brightness(.78);
+    text-shadow:0 0 4px rgba(99,215,207,.1);
+  }
+  53% {
+    opacity:1;
+    filter:brightness(1.2);
+    text-shadow:0 0 34px rgba(99,215,207,.42);
+  }
+  72% {
+    opacity:.9;
+    filter:brightness(.92);
+    text-shadow:0 0 12px rgba(99,215,207,.2);
+  }
+  100% {
+    opacity:1;
+    filter:none;
+    text-shadow:0 0 25px rgba(99,215,207,.18);
+    transform:scale(1);
+  }
+}
+
+@keyframes subtitleIn {
+  to {
+    opacity:1;
+  }
+}
+
+@keyframes lineGrow {
+  to {
+    width:min(260px,60vw);
+  }
+}
+
+@keyframes introFloat {
+  0%,100% {
+    transform:translateY(0);
+  }
+  50% {
+    transform:translateY(-5px);
+  }
+}
+
+/* Main App Container */
+.app-shell {
+  max-width:1260px;
+  margin:0 auto;
+  padding:0 30px 28px;
+  animation:appIn .55s ease both;
+}
+
+@keyframes appIn {
+  from {
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* Light Mode */
+body.light-mode {
+  color-scheme:light;
+  --bg:#f1f6f5;
+  --bg-soft:#f8fbfa;
+  --surface:#fff;
+  --surface-2:#e7f0ef;
+  --surface-3:#dfecea;
+  --border:#d1e0de;
+  --text:#183334;
+  --muted:#5b7776;
+  --accent:#168d85;
+  --accent-bright:#39b4ab;
+  --accent-soft:rgba(22,141,133,.1);
+  --danger:#c84f55;
+  --danger-soft:rgba(200,79,85,.1);
+  --shadow:0 18px 45px rgba(30,75,70,.1);
+}
+
+body.light-mode .splash {
+  background:radial-gradient(ellipse at 50% 40%,#e2f5f1 0%,#f2f8f7 52%,#e9f2f1 100%);
+}
+
+body.light-mode .splash-subtitle {
+  color:#456b69;
+}
+
+/* Keep the dashboard responsive without clipping content */
+html {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+}
+
+/* Original app-shell responsive declarations */
+@media (max-width:820px) {
+  .app-shell {
+    padding:0 20px 26px;
+  }
+}
+
+@media (max-width:520px) {
+  .app-shell {
+    padding:0 14px 22px;
+  }
+}
+
+/* Keep mobile layout usable */
+@media (max-width: 820px) {
+  .app-shell {
+    padding: 0 14px 10px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion:reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+}

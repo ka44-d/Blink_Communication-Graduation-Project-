@@ -1,0 +1,120 @@
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0c">
+
+  <title>Blink Communication - Entertainment</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/general.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/needs.css">
+  <link rel="stylesheet" href="../css/entertainment.css">
+</head>
+
+<body>
+
+  <main class="app-shell" id="app">
+
+    <header class="topbar">
+      <a class="brand-small" href="#" aria-label="Blink Communication">
+        <span class="brand-symbol" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Blink Communication</span>
+      </a>
+
+      <nav class="top-actions" aria-label="Settings">
+        <button class="utility-button" id="caregiverBtn" type="button" data-i18n="caregiver">لوحة المرافق</button>
+
+        <button class="utility-button language-button" id="languageBtn" type="button" aria-label="Change language">
+          <svg class="globe-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>
+          </svg>
+          <span id="languageLabel" class="sr-only">English</span>
+        </button>
+
+        <button class="icon-button" id="themeBtn" type="button" aria-label="Toggle day and night mode" title="الوضع النهاري">
+          <span id="themeIcon" aria-hidden="true">☾</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- ENTERTAINMENT PAGE -->
+    <section class="needs-page entertainment-page" id="entertainmentPage">
+
+      <div class="needs-heading">
+        <p class="needs-eyebrow">Blink Communication</p>
+        <h1 data-entertainment-text="title">الترفيه</h1>
+      </div>
+
+      <!-- Navigation -->
+      <div class="needs-grid needs-navigation-grid entertainment-navigation">
+
+        <button class="need-card" id="entertainmentBackBtn" type="button">
+          <span class="need-icon">↩️</span>
+          <span class="need-label" data-entertainment-text="back">الرجوع</span>
+        </button>
+
+        <button class="need-card needs-emergency-card"
+                id="entertainmentEmergencyBtn" type="button">
+          <span class="need-icon">❗</span>
+          <span class="need-label" data-entertainment-text="emergency">زرار الطوارئ</span>
+        </button>
+
+        <button class="need-card" id="entertainmentNextBtn" type="button">
+          <span class="need-icon">➡️</span>
+          <span class="need-label" data-entertainment-text="next">التالي</span>
+        </button>
+
+      </div>
+
+      <!-- Entertainment Choices -->
+      <div class="needs-grid entertainment-grid">
+
+        <button class="need-card entertainment-card" data-choice="quran" type="button">
+          <span class="need-icon">📖</span>
+          <span class="need-label" data-entertainment-text="quran">قرآن</span>
+        </button>
+
+        <button class="need-card entertainment-card" data-choice="youtube" type="button">
+          <span class="need-icon">▶️</span>
+          <span class="need-label" data-entertainment-text="youtube">يوتيوب</span>
+        </button>
+
+        <button class="need-card entertainment-card" data-choice="music" type="button">
+          <span class="need-icon">🎵</span>
+          <span class="need-label" data-entertainment-text="music">موسيقى</span>
+        </button>
+
+        <button class="need-card entertainment-card" data-choice="movie" type="button">
+          <span class="need-icon">🎬</span>
+          <span class="need-label" data-entertainment-text="movie">فيلم</span>
+        </button>
+
+      </div>
+
+      <!-- Selected Request -->
+      <div class="entertainment-message hidden"
+           id="entertainmentMessage"
+           aria-live="polite">
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="../js/general/translations.js"></script>
+  <script src="../js/general/shared.js"></script>
+  <script src="../js/general/language.js"></script>
+  <script src="../js/general/theme.js"></script>
+  <script src="../js/general/navigation.js"></script>
+  <script src="../js/pages/entertainment.js"></script>
+
+</body>
+</html>

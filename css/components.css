@@ -1,0 +1,321 @@
+
+/* =================================
+   TOPBAR
+   ================================= */
+
+.topbar {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand-small {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  text-decoration: none;
+  font-family: "Inter", "Cairo", sans-serif;
+  font-weight: 800;
+  font-size: 1.08rem;
+  letter-spacing: -.035em;
+}
+
+.brand-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 38px;
+  height: 30px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  border: 1px solid rgba(99,215,207,.2);
+}
+
+.brand-symbol span {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.utility-button,
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 9px 15px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--surface);
+  border-radius: 13px;
+  font-weight: 700;
+  transition: background .2s,border-color .2s,transform .2s;
+}
+
+.utility-button:hover,
+.icon-button:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.language-button {
+  color: var(--accent);
+}
+
+.icon-button {
+  width: 46px;
+  padding: 0;
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+/* =================================
+   MODALS AND DIALOGS
+   ================================= */
+
+.modal {
+  width: min(92vw,480px);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.modal::backdrop {
+  background: rgba(0,0,0,.76);
+  backdrop-filter: blur(5px);
+}
+
+.modal-inner {
+  position: relative;
+  padding: 36px;
+  text-align: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  inset-inline-end: 14px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.7rem;
+}
+
+.modal-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  border-radius: 18px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 1.8rem;
+}
+
+.modal h2 {
+  margin: 0 0 10px;
+}
+
+.muted {
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.modal .primary-button {
+  margin-top: 12px;
+}
+
+.alert-icon {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.primary-button {
+  border: 0;
+  border-radius: 13px;
+  padding: 11px 20px;
+  background: var(--accent);
+  color: #061112;
+  font-weight: 800;
+}
+
+.primary-button:hover {
+  background: var(--accent-bright);
+}
+
+/* =================================
+   PAUSE OVERLAY
+   ================================= */
+
+.pause-overlay {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(3,6,7,.92);
+  backdrop-filter: blur(12px);
+}
+
+.pause-overlay-card {
+  width: min(100%,440px);
+  padding: 42px 30px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.pause-big-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(99,215,207,.4);
+  background: var(--accent-soft);
+}
+
+.pause-big-icon i {
+  display: block;
+  width: 6px;
+  height: 22px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.pause-overlay-card h2 {
+  margin: 0 0 8px;
+}
+
+.pause-overlay-card p {
+  color: var(--muted);
+  margin: 0 0 22px;
+}
+
+/* =================================
+   LANGUAGE ICON AND ACCESSIBILITY
+   ================================= */
+
+.globe-icon {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: 0 0 auto;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.language-button {
+  min-width: 46px;
+  padding-inline: 13px;
+}
+
+/* =================================
+   INTERNAL PAGE LAYOUT
+   Medicine and Keyboard
+   ================================= */
+
+html:has(#medicinePage:not(.hidden)),
+body:has(#medicinePage:not(.hidden)),
+html:has(#keyboardPage:not(.hidden)),
+body:has(#keyboardPage:not(.hidden)) {
+  height: 100%;
+  overflow: hidden;
+}
+
+body:has(#medicinePage:not(.hidden)) .app-shell,
+body:has(#keyboardPage:not(.hidden)) .app-shell {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+body:has(#medicinePage:not(.hidden)) .topbar,
+body:has(#keyboardPage:not(.hidden)) .topbar {
+  flex-shrink: 0;
+}
+
+body:has(#medicinePage:not(.hidden)) #medicinePage,
+body:has(#keyboardPage:not(.hidden)) #keyboardPage {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(6px, 1.5vh, 16px);
+  padding-bottom: 8px;
+}
+
+body:has(#medicinePage:not(.hidden)) .medicine-actions,
+body:has(#medicinePage:not(.hidden)) .medicine-navigation,
+body:has(#keyboardPage:not(.hidden)) .needs-navigation-grid {
+  flex-shrink: 0;
+}
+
+body:has(#medicinePage:not(.hidden)) .medicine-page .needs-heading,
+body:has(#keyboardPage:not(.hidden)) #keyboardPage .needs-heading {
+  flex-shrink: 0;
+  margin-bottom: clamp(8px, 1.5vh, 16px);
+}
+
+@media (max-height: 650px) {
+  body:has(#medicinePage:not(.hidden)) #medicinePage,
+  body:has(#keyboardPage:not(.hidden)) #keyboardPage {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  body:has(#medicinePage:not(.hidden)) .medicine-page .needs-heading,
+  body:has(#keyboardPage:not(.hidden)) #keyboardPage .needs-heading {
+    margin-bottom: 5px;
+  }
+
+  body:has(#medicinePage:not(.hidden)) .medicine-actions .need-card {
+    min-height: 85px;
+  }
+
+  body:has(#medicinePage:not(.hidden)) .medicine-navigation .need-card {
+    min-height: 60px;
+  }
+}
+
