@@ -1,25 +1,71 @@
+/* ========================================
+   BLINK COMMUNICATION
+   Main application script
+======================================== */
+
+/* ========================================
+   TRANSLATIONS
+======================================== */
+
 const translations = {
   ar: {
-    welcome:"Welcome", caregiver:"لوحة المرافق", dashboardLabel:"مساحة التواصل المساعدة",
-    dashboardTitle:"إيه اللي محتاج تقوله؟", dashboardDesc:"اختار كارت للتعبير عن احتياجك بسرعة ووضوح.",
-    needs:"الاحتياجات", needsDesc:"ماء، أكل، حمام والمزيد", medicine:"الدواء", medicineDesc:"دوائي أو أحتاج مساعدة",
-    keyboard:"الكيبورد", keyboardDesc:"اكتب رسالة بطريقتك", room:"غرفتي", roomDesc:"الراحة والأشياء حولي",
-    fun:"الترفيه", funDesc:"أنشطة ووقت ممتع", emergency:"زرار الطوارئ", emergencyDesc:"محتاج مساعدة حالًا",
-    pauseTitle:"إيقاف مؤقت", pauseDesc:"اضغط لإيقاف التفاعل مؤقتًا", pauseAction:"إيقاف مؤقت",
-    pausedTitle:"تم إيقاف التفاعل مؤقتًا", pausedDesc:"اضغط متابعة للرجوع إلى الصفحة.", resume:"متابعة",
-    footer:"Blink Communication — تواصل أوضح، كل يوم.", comingSoon:"قريبًا", caregiverTitle:"لوحة المرافق",
-    caregiverText:"هنضيف هنا أدوات المرافق وإعداداته في المرحلة القادمة.", okay:"تمام", urgent:"تنبيه مهم",
-    emergencyTitle:"هل تحتاج مساعدة فورية؟", emergencyText:"هذه النسخة التجريبية لا تتصل بالطوارئ تلقائيًا. اطلب المساعدة من شخص قريب أو اتصل بخدمات الطوارئ المحلية عند الحاجة.",
-    
-    close:"إغلاق", themeLight:"الوضع النهاري", themeDark:"الوضع الليلي", nextStep:"الخطوة القادمة",
-    needsBack:"الرجوع", needsNext:"التالي", needsPrompt:"اختار اللي محتاجه",
-
-    categoryComing:"هنجهز صفحة مستقلة للقسم ده في المرحلة القادمة.",
-    
-    categories:{needs:"الاحتياجات",medicine:"الدواء",keyboard:"الكيبورد",room:"غرفتي",fun:"الترفيه",emergency:"زرار الطوارئ"},
-    needWater:"ماء",needFood:"أكل",needBathroom:"حمام",needPain:"ألم",
-    needCold:"برد",needHot:"حر",needFamily:"أسرتي",needSad:"حزين",needThanks:"شكرًا",
-    
+    welcome: "Welcome",
+    caregiver: "لوحة المرافق",
+    dashboardLabel: "مساحة التواصل المساعدة",
+    dashboardTitle: "إيه اللي محتاج تقوله؟",
+    dashboardDesc: "اختار كارت للتعبير عن احتياجك بسرعة ووضوح.",
+    needs: "الاحتياجات",
+    needsDesc: "ماء، أكل، حمام والمزيد",
+    medicine: "الدواء",
+    medicineDesc: "دوائي أو أحتاج مساعدة",
+    keyboard: "الكيبورد",
+    keyboardDesc: "اكتب رسالة بطريقتك",
+    room: "غرفتي",
+    roomDesc: "الراحة والأشياء حولي",
+    fun: "الترفيه",
+    funDesc: "أنشطة ووقت ممتع",
+    emergency: "زرار الطوارئ",
+    emergencyDesc: "محتاج مساعدة حالًا",
+    pauseTitle: "إيقاف مؤقت",
+    pauseDesc: "اضغط لإيقاف التفاعل مؤقتًا",
+    pauseAction: "إيقاف مؤقت",
+    pausedTitle: "تم إيقاف التفاعل مؤقتًا",
+    pausedDesc: "اضغط متابعة للرجوع إلى الصفحة.",
+    resume: "متابعة",
+    footer: "Blink Communication — تواصل أوضح، كل يوم.",
+    comingSoon: "قريبًا",
+    caregiverTitle: "لوحة المرافق",
+    caregiverText: "هنضيف هنا أدوات المرافق وإعداداته في المرحلة القادمة.",
+    okay: "تمام",
+    urgent: "تنبيه مهم",
+    emergencyTitle: "هل تحتاج مساعدة فورية؟",
+    emergencyText:
+      "هذه النسخة التجريبية لا تتصل بالطوارئ تلقائيًا. اطلب المساعدة من شخص قريب أو اتصل بخدمات الطوارئ المحلية عند الحاجة.",
+    close: "إغلاق",
+    themeLight: "الوضع النهاري",
+    themeDark: "الوضع الليلي",
+    nextStep: "الخطوة القادمة",
+    needsBack: "الرجوع",
+    needsNext: "التالي",
+    needsPrompt: "اختار اللي محتاجه",
+    categoryComing: "هنجهز صفحة مستقلة للقسم ده في المرحلة القادمة.",
+    categories: {
+      needs: "الاحتياجات",
+      medicine: "الدواء",
+      keyboard: "الكيبورد",
+      room: "غرفتي",
+      fun: "الترفيه",
+      emergency: "زرار الطوارئ"
+    },
+    needWater: "ماء",
+    needFood: "أكل",
+    needBathroom: "حمام",
+    needPain: "ألم",
+    needCold: "برد",
+    needHot: "حر",
+    needFamily: "أسرتي",
+    needSad: "حزين",
+    needThanks: "شكرًا",
     medicinePageTitle: "موعد الدواء",
     medicinePageStatus: "حان وقت الدواء الآن",
     medicineTaken: "أخدت الدواء",
@@ -29,49 +75,85 @@ const translations = {
     medicineReminderSet: "تم ضبط التذكير بعد 10 دقايق",
     medicineReminderNow: "حان وقت تذكير الدواء!",
     entertainmentPage: {
-  title: "الترفيه",
-  back: "الرجوع",
-  emergency: "زرار الطوارئ",
-  next: "التالي",
-  quran: "قرآن",
-  youtube: "يوتيوب",
-  music: "موسيقى",
-  movie: "فيلم",
-  requestPrefix: "أنا محتاج"
-},
-    
+      title: "الترفيه",
+      back: "الرجوع",
+      emergency: "زرار الطوارئ",
+      next: "التالي",
+      quran: "قرآن",
+      youtube: "يوتيوب",
+      music: "موسيقى",
+      movie: "فيلم",
+      requestPrefix: "أنا محتاج"
+    },
+
+    roomPage: {
+      title: "غرفتي",
+      back: "الرجوع",
+      emergency: "زرار الطوارئ",
+      next: "التالي",
+      light: "الإضاءة",
+      fan: "المروحة"
+    }
   },
+
   en: {
-    welcome:"A simpler way to communicate, one step at a time", caregiver:"Caregiver Dashboard", dashboardLabel:"ASSISTIVE COMMUNICATION",
-    dashboardTitle:"What would you like to say?", dashboardDesc:"Choose a card to express a need quickly and clearly.",
-    needs:"Needs", needsDesc:"Water, food, bathroom and more", medicine:"Medicine", medicineDesc:"My medicine or help with it",
-    keyboard:"Keyboard", keyboardDesc:"Write a message your way", room:"My Room", roomDesc:"Comfort and things around me",
-    fun:"Entertainment", funDesc:"Activities and fun", emergency:"Emergency", emergencyDesc:"I need help right now",
-    pauseTitle:"Pause interaction", pauseDesc:"Temporarily pause interaction", pauseAction:"Pause",
-    pausedTitle:"Interaction paused", pausedDesc:"Select Resume to return to the page.", resume:"Resume",
-    footer:"Blink Communication — clearer communication, every day.", comingSoon:"COMING SOON", caregiverTitle:"Caregiver Dashboard",
-    caregiverText:"Caregiver tools and settings will be added here in the next stage.", okay:"Got it", urgent:"IMPORTANT",
-    emergencyTitle:"Do you need immediate help?", emergencyText:"This demo does not automatically contact emergency services. Ask someone nearby for help or contact local emergency services when needed.",
-    
-    close:"Close", themeLight:"Day mode", themeDark:"Night mode", nextStep:"COMING NEXT",
-    needsBack:"Back", needsNext:"Next", needsPrompt:"Choose what you need",
-
-    categoryComing:"A dedicated page for this section will be built in the next stage.",
-    
-    categories:{needs:"Needs",medicine:"Medicine",keyboard:"Keyboard",room:"My Room",fun:"Entertainment",emergency:"Emergency"},
-    needWater:"Water",
-    needFood:"Food",
-    needBathroom:"Bathroom",
-    needPain:"Pain",
-    needCold:"Cold",
-    needHot:"Hot",
-    needFamily:"My Family",
-    needSad:"Sad",
-    needThanks:"Thank you",
-
-
-    
-    
+    welcome: "A simpler way to communicate, one step at a time",
+    caregiver: "Caregiver Dashboard",
+    dashboardLabel: "ASSISTIVE COMMUNICATION",
+    dashboardTitle: "What would you like to say?",
+    dashboardDesc: "Choose a card to express a need quickly and clearly.",
+    needs: "Needs",
+    needsDesc: "Water, food, bathroom and more",
+    medicine: "Medicine",
+    medicineDesc: "My medicine or help with it",
+    keyboard: "Keyboard",
+    keyboardDesc: "Write a message your way",
+    room: "My Room",
+    roomDesc: "Comfort and things around me",
+    fun: "Entertainment",
+    funDesc: "Activities and fun",
+    emergency: "Emergency",
+    emergencyDesc: "I need help right now",
+    pauseTitle: "Pause interaction",
+    pauseDesc: "Temporarily pause interaction",
+    pauseAction: "Pause",
+    pausedTitle: "Interaction paused",
+    pausedDesc: "Select Resume to return to the page.",
+    resume: "Resume",
+    footer: "Blink Communication — clearer communication, every day.",
+    comingSoon: "COMING SOON",
+    caregiverTitle: "Caregiver Dashboard",
+    caregiverText: "Caregiver tools and settings will be added here in the next stage.",
+    okay: "Got it",
+    urgent: "IMPORTANT",
+    emergencyTitle: "Do you need immediate help?",
+    emergencyText:
+      "This demo does not automatically contact emergency services. Ask someone nearby for help or contact local emergency services when needed.",
+    close: "Close",
+    themeLight: "Day mode",
+    themeDark: "Night mode",
+    nextStep: "COMING NEXT",
+    needsBack: "Back",
+    needsNext: "Next",
+    needsPrompt: "Choose what you need",
+    categoryComing: "A dedicated page for this section will be built in the next stage.",
+    categories: {
+      needs: "Needs",
+      medicine: "Medicine",
+      keyboard: "Keyboard",
+      room: "My Room",
+      fun: "Entertainment",
+      emergency: "Emergency"
+    },
+    needWater: "Water",
+    needFood: "Food",
+    needBathroom: "Bathroom",
+    needPain: "Pain",
+    needCold: "Cold",
+    needHot: "Hot",
+    needFamily: "My Family",
+    needSad: "Sad",
+    needThanks: "Thank you",
     medicinePageTitle: "Medication Reminder",
     medicinePageStatus: "It's time to take your medicine",
     medicineTaken: "I've taken my medicine",
@@ -80,24 +162,28 @@ const translations = {
     medicineTakenStatus: "Medicine taken has been recorded",
     medicineReminderSet: "Reminder set for 10 minutes",
     medicineReminderNow: "It's time for your medicine reminder!",
-
     entertainmentPage: {
-  title: "Entertainment",
-  back: "Back",
-  emergency: "Emergency",
-  next: "Next",
-  quran: "Quran",
-  youtube: "YouTube",
-  music: "Music",
-  movie: "Movie",
-  requestPrefix: "I need"
-},
-   
+      title: "Entertainment",
+      back: "Back",
+      emergency: "Emergency",
+      next: "Next",
+      quran: "Quran",
+      youtube: "YouTube",
+      music: "Music",
+      movie: "Movie",
+      requestPrefix: "I need"
+    },
 
-
+    roomPage: {
+    title: "My Room",
+    back: "Back",
+    emergency: "Emergency",
+    next: "Next",
+    light: "Lighting",
+    fan: "Fan"
+  }
   }
 };
-
 
 const authTranslations = {
   ar: {
@@ -153,51 +239,102 @@ const authTranslations = {
   }
 };
 
+/* ========================================
+   SHARED STATE AND ELEMENT HELPERS
+======================================== */
+
+let lang = "ar";
+let medicineReminderTimer = null;
+let keyboardMessage = "";
+let activeKeyboardGroupIndex = null;
+
+const $ = id => document.getElementById(id);
+
+/* ========================================
+   SPLASH SCREEN
+======================================== */
+
+const splash = $("splash");
+const app = $("app");
+
+window.setTimeout(() => {
+  splash.classList.add("hidden");
+  app.classList.remove("hidden");
+}, 5000);
+
+/* ========================================
+   LANGUAGE
+======================================== */
+
 function applyAuthLanguage() {
-  const current = authTranslations[lang];
+  const currentTranslations = authTranslations[lang];
 
   document.querySelectorAll("[data-auth]").forEach(element => {
     const key = element.dataset.auth;
 
-    if (current[key] !== undefined) {
-      element.textContent = current[key];
+    if (currentTranslations[key] !== undefined) {
+      element.textContent = currentTranslations[key];
     }
   });
 
   document.querySelectorAll("[data-placeholder]").forEach(element => {
     const key = element.dataset.placeholder;
 
-    if (current[key] !== undefined) {
-      element.placeholder = current[key];
+    if (currentTranslations[key] !== undefined) {
+      element.placeholder = currentTranslations[key];
     }
   });
 }
 
-let lang = "ar";
-const $ = id => document.getElementById(id);
-const splash = $("splash"), app = $("app");
-window.setTimeout(() => {
-  splash.classList.add("hidden");
-  app.classList.remove("hidden");
-}, 5000);
 
+function applyEntertainmentLanguage() {
+  const entertainmentTexts = translations[lang].entertainmentPage;
+
+  document.querySelectorAll("[data-entertainment-text]").forEach(element => {
+    const key = element.dataset.entertainmentText;
+
+    if (entertainmentTexts[key] !== undefined) {
+      element.textContent = entertainmentTexts[key];
+    }
+  });
+
+  const message = $("entertainmentMessage");
+
+  if (message.dataset.choice) {
+    const choice = message.dataset.choice;
+    message.textContent =
+      `${entertainmentTexts.requestPrefix} ${entertainmentTexts[choice]}`;
+  }
+}
+
+function applyRoomLanguage() {
+  const roomTexts = translations[lang].roomPage;
+
+  document.querySelectorAll("[data-room-text]").forEach(element => {
+    const key = element.dataset.roomText;
+
+    if (roomTexts[key] !== undefined) {
+      element.textContent = roomTexts[key];
+    }
+  });
+}
 
 function applyLanguage() {
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.dataset.i18n;
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.dataset.i18n;
     const value = translations[lang][key];
 
-    if (value) {
-      el.textContent = value;
+    if (value !== undefined) {
+      element.textContent = value;
     }
-
-   
   });
-
-   applyAuthLanguage();
+  
+applyAuthLanguage();
+applyEntertainmentLanguage();
+applyRoomLanguage();
 
   $("languageLabel").textContent = lang === "ar" ? "English" : "العربية";
 
@@ -214,258 +351,161 @@ function applyLanguage() {
   $("themeBtn").title = document.body.classList.contains("light-mode")
     ? translations[lang].themeLight
     : translations[lang].themeDark;
+}
 
-  document.querySelectorAll(".category-card").forEach(card => {
-    const category = translations[lang].categories[card.dataset.category];
+/* ========================================
+   AUTHENTICATION PAGES
+======================================== */
 
-    if (category) {
-      card.setAttribute("aria-label", category);
-    }
+const loginForm = $("loginForm");
+
+loginForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  // Prototype behavior: accept any valid, non-empty username and password.
+  if (!loginForm.reportValidity()) return;
+
+  $("loginPage").classList.add("hidden");
+  $("signupPage").classList.add("hidden");
+  $("forgotPage").classList.add("hidden");
+
+  document.querySelector(".welcome-row").classList.remove("hidden");
+  document.querySelector(".cards-grid").classList.remove("hidden");
+  document.querySelector(".pause-card").classList.remove("hidden");
+});
+
+$("openSignup").addEventListener("click", () => {
+  $("loginPage").classList.add("hidden");
+  $("signupPage").classList.remove("hidden");
+  $("forgotPage").classList.add("hidden");
+});
+
+$("signupBack").addEventListener("click", () => {
+  $("signupPage").classList.add("hidden");
+  $("forgotPage").classList.add("hidden");
+  $("loginPage").classList.remove("hidden");
+});
+
+$("openForgot").addEventListener("click", () => {
+  $("loginPage").classList.add("hidden");
+  $("signupPage").classList.add("hidden");
+  $("forgotPage").classList.remove("hidden");
+});
+
+$("forgotBack").addEventListener("click", () => {
+  $("forgotPage").classList.add("hidden");
+  $("signupPage").classList.add("hidden");
+  $("loginPage").classList.remove("hidden");
+});
+
+/* ========================================
+   PAGE NAVIGATION
+======================================== */
+
+function hideAllPages() {
+  document.querySelector(".welcome-row").classList.add("hidden");
+  document.querySelector(".cards-grid").classList.add("hidden");
+  document.querySelector(".pause-card").classList.add("hidden");
+
+  document.querySelectorAll(".needs-page").forEach(page => {
+    page.classList.add("hidden");
   });
 
-  // Entertainment Page Translation
-const entertainmentTexts = translations[lang].entertainmentPage;
-
-document.querySelectorAll("[data-entertainment-text]").forEach(element => {
-    const key = element.dataset.entertainmentText;
-
-    if (entertainmentTexts[key]) {
-        element.textContent = entertainmentTexts[key];
-    }
-});
-
-// Update selected entertainment message
-const entertainmentMessage = $("entertainmentMessage");
-
-if (entertainmentMessage.dataset.choice) {
-    const choice = entertainmentMessage.dataset.choice;
-
-    entertainmentMessage.textContent =
-        `${entertainmentTexts.requestPrefix} ${entertainmentTexts[choice]}`;
-}
+  $("needsFeedback").classList.add("hidden");
 }
 
+function showOnlyPage(pageId) {
+  hideAllPages();
 
-/* Temporary demo login: accept any non-empty username and password */
-const loginForm = document.getElementById("loginForm");
+  const page = $(pageId);
 
-if (loginForm) {
-  loginForm.addEventListener("submit", function (event) {
-    event.preventDefault();
+  if (!page) {
+    console.error("Page not found:", pageId);
+    return;
+  }
 
-    // Allow any username and password for the prototype.
-    if (!loginForm.reportValidity()) return;
-
-    document.getElementById("loginPage").classList.add("hidden");
-    document.getElementById("signupPage").classList.add("hidden");
-    document.getElementById("forgotPage").classList.add("hidden");
-
-    document.querySelector(".welcome-row").classList.remove("hidden");
-    document.querySelector(".cards-grid").classList.remove("hidden");
-    document.querySelector(".pause-card").classList.remove("hidden");
-  });
+  page.classList.remove("hidden");
+  window.scrollTo(0, 0);
 }
-
-/* Open the separate sign-up page */
-document.getElementById("openSignup")?.addEventListener("click", function () {
-  document.getElementById("loginPage").classList.add("hidden");
-  document.getElementById("signupPage").classList.remove("hidden");
-  document.getElementById("forgotPage").classList.add("hidden");
-});
-
-/* Return from sign-up to login */
-document.getElementById("signupBack")?.addEventListener("click", function () {
-  document.getElementById("signupPage").classList.add("hidden");
-  document.getElementById("forgotPage").classList.add("hidden");
-  document.getElementById("loginPage").classList.remove("hidden");
-});
-
-/* Open forgot-password page */
-document.getElementById("openForgot")?.addEventListener("click", function () {
-  document.getElementById("loginPage").classList.add("hidden");
-  document.getElementById("signupPage").classList.add("hidden");
-  document.getElementById("forgotPage").classList.remove("hidden");
-});
-
-/* Return from forgot-password to login */
-document.getElementById("forgotBack")?.addEventListener("click", function () {
-  document.getElementById("forgotPage").classList.add("hidden");
-  document.getElementById("signupPage").classList.add("hidden");
-  document.getElementById("loginPage").classList.remove("hidden");
-});
-
-
-
-$("languageBtn").addEventListener("click", () => {
-
-  lang = lang === "ar" ? "en" : "ar";
-
-  // Update the whole application language
-  applyLanguage();
-
-  // Update both keyboard screens
-  updateKeyboardLanguage();
-
-});
-
-$("themeBtn").addEventListener("click", () => {
-  const isLight = document.body.classList.toggle("light-mode");
-
-  $("themeIcon").textContent = isLight ? "☀" : "☾";
-
-  $("themeBtn").title = isLight
-    ? translations[lang].themeLight
-    : translations[lang].themeDark;
-
-  applyLanguage();
-});
-
 
 function showHomePage() {
-
-  $("needsPage").classList.add("hidden");
-  $("medicinePage").classList.add("hidden");
-  $("keyboardPage").classList.add("hidden");
-  $("roomPage").classList.add("hidden");
-  $("entertainmentPage").classList.add("hidden");
+  document.querySelectorAll(".needs-page").forEach(page => {
+    page.classList.add("hidden");
+  });
 
   document.querySelector(".welcome-row").classList.remove("hidden");
   document.querySelector(".cards-grid").classList.remove("hidden");
   document.querySelector(".pause-card").classList.remove("hidden");
 
   $("needsFeedback").classList.add("hidden");
+  window.scrollTo(0, 0);
 }
-
 
 function showNeedsPage() {
-
-  document.querySelector(".welcome-row").classList.add("hidden");
-  document.querySelector(".cards-grid").classList.add("hidden");
-  document.querySelector(".pause-card").classList.add("hidden");
-
-  $("medicinePage").classList.add("hidden");
-  $("keyboardPage").classList.add("hidden");
-  $("roomPage").classList.add("hidden");
-
-  $("needsPage").classList.remove("hidden");
-  $("needsFeedback").classList.add("hidden");
+  showOnlyPage("needsPage");
 }
-
 
 function showMedicinePage() {
-
-  document.querySelector(".welcome-row").classList.add("hidden");
-  document.querySelector(".cards-grid").classList.add("hidden");
-  document.querySelector(".pause-card").classList.add("hidden");
-
-  $("needsPage").classList.add("hidden");
-  $("keyboardPage").classList.add("hidden");
-  $("roomPage").classList.add("hidden");
-
-  $("medicinePage").classList.remove("hidden");
+  showOnlyPage("medicinePage");
 }
-
 
 function showKeyboardPage() {
-
-  document.querySelector(".welcome-row").classList.add("hidden");
-  document.querySelector(".cards-grid").classList.add("hidden");
-  document.querySelector(".pause-card").classList.add("hidden");
-
-  $("needsPage").classList.add("hidden");
-  $("medicinePage").classList.add("hidden");
-  $("roomPage").classList.add("hidden");
-
-  $("keyboardPage").classList.remove("hidden");
+  showOnlyPage("keyboardPage");
 }
 
 function showRoomPage() {
-    document.querySelector(".welcome-row").classList.add("hidden");
-    document.querySelector(".cards-grid").classList.add("hidden");
-    document.querySelector(".pause-card").classList.add("hidden");
-
-    $("needsPage").classList.add("hidden");
-    $("medicinePage").classList.add("hidden");
-    $("keyboardPage").classList.add("hidden");
-    $("entertainmentPage").classList.add("hidden");
-
-    $("roomPage").classList.remove("hidden");
-}
-
-
-function showRoomPage() {
-
-  document.querySelector(".welcome-row").classList.add("hidden");
-  document.querySelector(".cards-grid").classList.add("hidden");
-  document.querySelector(".pause-card").classList.add("hidden");
-
-  $("needsPage").classList.add("hidden");
-  $("medicinePage").classList.add("hidden");
-  $("keyboardPage").classList.add("hidden");
-
-  $("roomPage").classList.remove("hidden");
+  showOnlyPage("roomPage");
 }
 
 function showEntertainmentPage() {
-    document.querySelector(".welcome-row").classList.add("hidden");
-    document.querySelector(".cards-grid").classList.add("hidden");
-    document.querySelector(".pause-card").classList.add("hidden");
-
-    $("needsPage").classList.add("hidden");
-    $("medicinePage").classList.add("hidden");
-    $("keyboardPage").classList.add("hidden");
-    $("roomPage").classList.add("hidden");
-
-    $("entertainmentPage").classList.remove("hidden");
+  showOnlyPage("entertainmentPage");
 }
 
-
-
+/* ========================================
+   DASHBOARD CATEGORY CARDS
+======================================== */
 
 document.querySelectorAll(".category-card").forEach(card => {
   card.addEventListener("click", () => {
     const key = card.dataset.category;
 
-    if (key === "needs") {
-      showNeedsPage();
-      return;
+    switch (key) {
+      case "needs":
+        showNeedsPage();
+        break;
+      case "medicine":
+        showMedicinePage();
+        break;
+      case "keyboard":
+        showKeyboardPage();
+        break;
+      case "room":
+        showRoomPage();
+        break;
+      case "fun":
+        showEntertainmentPage();
+        break;
+      case "emergency":
+        $("emergencyDialog").showModal();
+        break;
+      default:
+        $("categoryModalTitle").textContent =
+          translations[lang].categories[key] || key;
+
+        $("categoryModalIcon").textContent =
+          card.querySelector(".card-icon").textContent;
+
+        $("categoryDialog").showModal();
     }
-
-    if (key === "medicine") {
-      showMedicinePage();
-      return;
-    }
-
-
-   if (key === "keyboard") {
-      showKeyboardPage();
-      return;
-    }
-
-if (key === "room") {
-  showRoomPage();
-  return;
-}
-
-
-    if (key === "emergency") {
-      $("emergencyDialog").showModal();
-      return;
-    }
-
-    $("categoryModalTitle").textContent =
-      translations[lang].categories[key];
-
-    $("categoryModalIcon").textContent =
-      card.querySelector(".card-icon").textContent;
-
-    $("categoryDialog").showModal();
   });
 });
 
+/* ========================================
+   NEEDS PAGE
+======================================== */
+
 $("needsBackBtn").addEventListener("click", showHomePage);
 $("needsNextBtn").addEventListener("click", showMedicinePage);
-$("medicineBackBtn").addEventListener("click", showNeedsPage);
 
 $("needsEmergencyBtn").addEventListener("click", () => {
   $("emergencyDialog").showModal();
@@ -481,80 +521,40 @@ $("needsPage").querySelectorAll(".need-card").forEach(card => {
   });
 });
 
+/* ========================================
+   MEDICINE PAGE
+======================================== */
 
-/* =========================
-   PAGE NAVIGATION
-========================= */
-
-// Medicine Page
 $("medicineBackBtn").addEventListener("click", showNeedsPage);
 $("medicineNextBtn").addEventListener("click", showKeyboardPage);
 
-// Keyboard Page
-$("keyboardBackBtn").addEventListener("click", showMedicinePage);
-$("keyboardNextBtn").addEventListener("click", showRoomPage);
-
-// Room Page
-$("roomBackBtn").addEventListener("click", showKeyboardPage);
-$("roomNextBtn").addEventListener("click", showEntertainmentPage);
-
-// Entertainment Page
-$("entertainmentBackBtn").addEventListener("click", showRoomPage);
-$("entertainmentNextBtn").addEventListener("click", showHomePage);
-// Entertainment Choices
-document.querySelectorAll(".entertainment-card").forEach(card => {
-    card.addEventListener("click", () => {
-        const choice = card.dataset.choice;
-        const lang = document.documentElement.lang === "en" ? "en" : "ar";
-        const texts = translations[lang].entertainmentPage;
-        const message = $("entertainmentMessage");
-
-        message.dataset.choice = choice;
-        message.textContent = `${texts.requestPrefix} ${texts[choice]}`;
-
-        message.classList.remove("hidden");
-
-        // Highlight selected card
-        document.querySelectorAll(".entertainment-card").forEach(item => {
-            item.classList.remove("selected");
-        });
-
-        card.classList.add("selected");
-    });
-});
-
-// Medicine actions
-let medicineReminderTimer = null;
-
 $("medicineTakenBtn").addEventListener("click", () => {
   if (medicineReminderTimer !== null) {
-    clearTimeout(medicineReminderTimer);
+    window.clearTimeout(medicineReminderTimer);
     medicineReminderTimer = null;
   }
 
   $("medicineStatus").textContent =
-  translations[lang].medicineTakenStatus;
+    translations[lang].medicineTakenStatus;
 });
 
 $("medicineReminderBtn").addEventListener("click", () => {
   if (medicineReminderTimer !== null) {
-    clearTimeout(medicineReminderTimer);
+    window.clearTimeout(medicineReminderTimer);
   }
 
   $("medicineStatus").textContent =
-    "تم ضبط التذكير بعد 10 دقايق";
+    translations[lang].medicineReminderSet;
 
-  medicineReminderTimer = setTimeout(() => {
+  medicineReminderTimer = window.setTimeout(() => {
     medicineReminderTimer = null;
+    $("medicineStatus").textContent =
+      translations[lang].medicineReminderNow;
 
-   $("medicineStatus").textContent =
-  translations[lang].medicineReminderNow;
-
-alert(translations[lang].medicineReminderNow);
+    alert(translations[lang].medicineReminderNow);
   }, 10 * 60 * 1000);
 });
 
-// SOS
 $("medicineSosBtn").addEventListener("click", () => {
   $("emergencyDialog").showModal();
 });
@@ -563,36 +563,91 @@ $("medicineEmergencyBtn").addEventListener("click", () => {
   $("emergencyDialog").showModal();
 });
 
+/* ========================================
+   KEYBOARD PAGE NAVIGATION AND SOS
+======================================== */
+
+$("keyboardBackBtn").addEventListener("click", showMedicinePage);
+$("keyboardNextBtn").addEventListener("click", showRoomPage);
+
 $("keyboardEmergencyBtn").addEventListener("click", () => {
   $("emergencyDialog").showModal();
 });
 
+/* ========================================
+   ROOM AND ENTERTAINMENT NAVIGATION
+======================================== */
 
-let paused = false;
-function setPaused(value) {
-  paused = value;
-  $("pauseOverlay").classList.toggle("hidden", !paused);
-  $("pauseBtn").setAttribute("aria-label", paused ? (lang === "ar" ? "متابعة التفاعل" : "Resume interaction") : (lang === "ar" ? "إيقاف التفاعل مؤقتًا" : "Pause interaction"));
-  $("pauseLabel").textContent = paused
-  ? (lang === "ar" ? "متابعة" : "Resume")
-  : translations[lang].pauseAction;
-  $("pauseSymbol").innerHTML = paused ? '<i class="play-triangle"></i>' : '<i></i><i></i>';
-}
-$("pauseBtn").addEventListener("click", () => setPaused(!paused));
-$("resumeBtn").addEventListener("click", () => setPaused(false));
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && paused) setPaused(false);
+$("roomBackBtn").addEventListener("click", showKeyboardPage);
+$("roomNextBtn").addEventListener("click", showEntertainmentPage);
+
+$("entertainmentBackBtn").addEventListener("click", showRoomPage);
+$("entertainmentNextBtn").addEventListener("click", showHomePage);
+
+/* ========================================
+   ENTERTAINMENT PAGE
+======================================== */
+
+document.querySelectorAll(".entertainment-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const choice = card.dataset.choice;
+    const entertainmentTexts = translations[lang].entertainmentPage;
+    const message = $("entertainmentMessage");
+
+    message.dataset.choice = choice;
+    message.textContent =
+      `${entertainmentTexts.requestPrefix} ${entertainmentTexts[choice]}`;
+
+    message.classList.remove("hidden");
+
+    document.querySelectorAll(".entertainment-card").forEach(item => {
+      item.classList.remove("selected");
+    });
+
+    card.classList.add("selected");
+  });
 });
-applyLanguage();
 
-/* =================================
-   ARABIC KEYBOARD SYSTEM
-================================= */
+/* ========================================
+   PAUSE / RETURN TO LOGIN
+======================================== */
 
-// Arabic letter groups
+function returnToLogin() {
+  hideAllPages();
+
+  $("signupPage").classList.add("hidden");
+  $("forgotPage").classList.add("hidden");
+  $("pauseOverlay").classList.add("hidden");
+  $("loginPage").classList.remove("hidden");
+
+  window.scrollTo(0, 0);
+}
+
+$("pauseBtn").addEventListener("click", returnToLogin);
+
+/* ========================================
+   LANGUAGE AND THEME CONTROLS
+======================================== */
+
+$("languageBtn").addEventListener("click", () => {
+  lang = lang === "ar" ? "en" : "ar";
+
+  applyLanguage();
+  updateKeyboardLanguage();
+});
+
+$("themeBtn").addEventListener("click", () => {
+  const isLight = document.body.classList.toggle("light-mode");
+
+  $("themeIcon").textContent = isLight ? "☀" : "☾";
+  applyLanguage();
+});
+
+/* ========================================
+   KEYBOARD LETTER DATA
+======================================== */
 
 const keyboardGroupsByLanguage = {
-
   ar: [
     ["ا", "ب", "ت", "ث", "ج", "ح"],
     ["خ", "د", "ذ", "ر", "ز"],
@@ -610,147 +665,87 @@ const keyboardGroupsByLanguage = {
     ["S", "T", "U", "V"],
     ["W", "X", "Y", "Z"]
   ]
-
 };
 
-let activeKeyboardGroupIndex = null;
-
-
-/* =================================
-   KEYBOARD LANGUAGE SYSTEM
-================================= */
+/* ========================================
+   KEYBOARD LANGUAGE
+======================================== */
 
 function updateKeyboardLanguage() {
-
   const isArabic = lang === "ar";
 
-  const texts = isArabic ? {
+  const texts = isArabic
+    ? {
+        back: "الرجوع",
+        emergency: "زرار الطوارئ",
+        next: "التالي",
+        message: "رسالتي",
+        placeholder: "الكلام اللي هختاره هيظهر هنا",
+        group: "مجموعة",
+        choose: "اختار حرف",
+        speak: "نطق",
+        space: "مسافة",
+        delete: "حذف",
+        exit: "خروج"
+      }
+    : {
+        back: "Back",
+        emergency: "Emergency",
+        next: "Next",
+        message: "My Message",
+        placeholder: "Your selected letters will appear here",
+        group: "Group",
+        choose: "Choose a Letter",
+        speak: "Speak",
+        space: "Space",
+        delete: "Delete",
+        exit: "Exit"
+      };
 
-    back: "الرجوع",
-    emergency: "زرار الطوارئ",
-    next: "التالي",
-    message: "رسالتي",
-    placeholder: "الكلام اللي هختاره هيظهر هنا",
-    group: "مجموعة",
-    choose: "اختار حرف",
-    speak: "نطق",
-    space: "مسافة",
-    delete: "حذف",
-    exit: "خروج"
-
-  } : {
-
-    back: "Back",
-    emergency: "Emergency",
-    next: "Next",
-    message: "My Message",
-    placeholder: "Your selected letters will appear here",
-    group: "Group",
-    choose: "Choose a Letter",
-    speak: "Speak",
-    space: "Space",
-    delete: "Delete",
-    exit: "Exit"
-
-  };
-
-  // Update navigation buttons
-
-  $("keyboardBackBtn").querySelector(".need-label").textContent =
-    texts.back;
-
+  $("keyboardBackBtn").querySelector(".need-label").textContent = texts.back;
   $("keyboardEmergencyBtn").querySelector(".need-label").textContent =
     texts.emergency;
-
-  $("keyboardNextBtn").querySelector(".need-label").textContent =
-    texts.next;
-
-
-  // Update main message
+  $("keyboardNextBtn").querySelector(".need-label").textContent = texts.next;
 
   document.querySelector(".keyboard-output-title").textContent =
     texts.message;
-
-
-  // Update speak button
-
-  $("keyboardSpeakBtn").querySelector("strong").textContent =
-    texts.speak;
-
-
-  // Update all six letter groups
-
-  document.querySelectorAll(".keyboard-group").forEach((button, index) => {
-
-    const letters = keyboardGroupsByLanguage[lang][index];
-
-    button.querySelector("span").textContent = letters.join(" ");
-
-    button.querySelector("small").textContent = texts.group;
-
-  });
-
-
-  // Update popup
-
-  $("letterDialogTitle").textContent = texts.choose;
-
   document.querySelector(".popup-message-title").textContent =
     texts.message;
 
-  $("popupSpaceBtn").querySelector("strong").textContent =
-    texts.space;
+  $("keyboardSpeakBtn").querySelector("strong").textContent = texts.speak;
+  $("keyboardClearBtn").querySelector("strong").textContent = texts.delete;
+  $("letterDialogTitle").textContent = texts.choose;
+  $("popupSpaceBtn").querySelector("strong").textContent = texts.space;
+  $("popupDeleteBtn").querySelector("strong").textContent = texts.delete;
+  $("letterExitBtn").querySelector("strong").textContent = texts.exit;
 
-  $("popupDeleteBtn").querySelector("strong").textContent =
-    texts.delete;
+  document.querySelectorAll(".keyboard-group").forEach((button, index) => {
+    const letters = keyboardGroupsByLanguage[lang][index];
 
-  $("letterExitBtn").querySelector("strong").textContent =
-    texts.exit;
+    button.querySelector("span").textContent = letters.join(" ");
+    button.querySelector("small").textContent = texts.group;
+  });
 
+  const direction = isArabic ? "rtl" : "ltr";
 
-  // Change text direction
-
-  $("keyboardOutput").style.direction =
-    isArabic ? "rtl" : "ltr";
-
-  $("popupKeyboardOutput").style.direction =
-    isArabic ? "rtl" : "ltr";
-
-  document.querySelector(".keyboard-output").style.direction =
-    isArabic ? "rtl" : "ltr";
-
-  document.querySelector(".popup-message-box").style.direction =
-    isArabic ? "rtl" : "ltr";
-
-  $("letterGrid").style.direction =
-    isArabic ? "rtl" : "ltr";
-
-
-  // Update message without deleting it
+  $("keyboardOutput").style.direction = direction;
+  $("popupKeyboardOutput").style.direction = direction;
+  document.querySelector(".keyboard-output").style.direction = direction;
+  document.querySelector(".popup-message-box").style.direction = direction;
+  $("letterGrid").style.direction = direction;
 
   updateKeyboardOutput();
 
-
-  // If popup is already open, refresh its letters
-
-  if (
-    $("letterDialog").open &&
-    activeKeyboardGroupIndex !== null
-  ) {
-
+  if ($("letterDialog").open && activeKeyboardGroupIndex !== null) {
     renderKeyboardLetters(activeKeyboardGroupIndex);
-
   }
-
 }
 
-
-// Store selected letters
-let keyboardMessage = "";
-
+/* ========================================
+   KEYBOARD MESSAGE OUTPUT
+======================================== */
 
 function updateKeyboardOutput() {
-
   const placeholder = lang === "ar"
     ? "الكلام اللي هختاره هيظهر هنا"
     : "Your selected letters will appear here";
@@ -758,23 +753,15 @@ function updateKeyboardOutput() {
   const message = keyboardMessage || placeholder;
 
   $("keyboardOutput").textContent = message;
-
   $("popupKeyboardOutput").textContent = message;
-
 }
 
-
-
-
- 
-/* =================================
+/* ========================================
    RENDER LETTERS
-================================= */
+======================================== */
 
 function renderKeyboardLetters(groupIndex) {
-
   const letters = keyboardGroupsByLanguage[lang][groupIndex];
-
   const grid = $("letterGrid");
 
   grid.innerHTML = "";
@@ -783,7 +770,6 @@ function renderKeyboardLetters(groupIndex) {
     lang === "ar" ? "اختار حرف" : "Choose a Letter";
 
   letters.forEach(letter => {
-
     const letterButton = document.createElement("button");
 
     letterButton.type = "button";
@@ -791,79 +777,53 @@ function renderKeyboardLetters(groupIndex) {
     letterButton.textContent = letter;
 
     letterButton.addEventListener("click", () => {
-
       keyboardMessage += letter;
-
       updateKeyboardOutput();
-
-      // Keep popup open
-
     });
 
     grid.appendChild(letterButton);
-
   });
-
 }
 
-
-/* =================================
-   OPEN LETTER GROUPS
-================================= */
+/* ========================================
+   KEYBOARD GROUPS AND ACTIONS
+======================================== */
 
 document.querySelectorAll(".keyboard-group").forEach(button => {
-
   button.addEventListener("click", () => {
-
     activeKeyboardGroupIndex = Number(button.dataset.group);
 
     updateKeyboardOutput();
-
     renderKeyboardLetters(activeKeyboardGroupIndex);
-
     $("letterDialog").showModal();
-
   });
-
 });
 
-
-// Add space
 $("popupSpaceBtn").addEventListener("click", () => {
-
   keyboardMessage += " ";
-
   updateKeyboardOutput();
-
 });
 
-
-// Delete last character
 $("popupDeleteBtn").addEventListener("click", () => {
+  keyboardMessage = Array.from(keyboardMessage).slice(0, -1).join("");
+  updateKeyboardOutput();
+});
 
-  keyboardMessage = Array.from(keyboardMessage)
-    .slice(0, -1)
-    .join("");
-
+$("keyboardClearBtn").addEventListener("click", () => {
+  keyboardMessage = "";
   updateKeyboardOutput();
 
-});
-
-
-// Exit popup and return to keyboard main page
-$("letterExitBtn").addEventListener("click", () => {
-
-  $("letterDialog").close();
-
-});
-
-
-// Speak selected message
-$("keyboardSpeakBtn").addEventListener("click", () => {
-
-  if (!keyboardMessage.trim()) {
-    return;
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
   }
+});
+
+$("letterExitBtn").addEventListener("click", () => {
+  $("letterDialog").close();
+});
+
+$("keyboardSpeakBtn").addEventListener("click", () => {
+  if (!keyboardMessage.trim()) return;
 
   if (!("speechSynthesis" in window)) {
     alert("النطق غير مدعوم في هذا المتصفح");
@@ -878,7 +838,11 @@ $("keyboardSpeakBtn").addEventListener("click", () => {
   speech.rate = 0.85;
 
   window.speechSynthesis.speak(speech);
-
 });
 
+/* ========================================
+   INITIALIZE APPLICATION
+======================================== */
+
+applyLanguage();
 updateKeyboardLanguage();

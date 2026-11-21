@@ -33,7 +33,6 @@
       </nav>
     </header>
 
-    
 <!-- LOGIN PAGE -->
 <section class="auth-view login-page" id="loginPage">
   <div class="auth-card">
@@ -162,7 +161,6 @@
   </div>
 </section>
 
-
     <section class="welcome-row hidden">
       <p class="eyebrow" data-i18n="dashboardLabel">مساحة التواصل المساعدة</p>
       <h2 data-i18n="dashboardTitle">إيه اللي محتاج تقوله؟</h2>
@@ -176,7 +174,7 @@
         <span class="card-description" data-i18n="needsDesc">ماء، أكل، حمام والمزيد</span>
         <span class="card-arrow" aria-hidden="true">↗</span>
       </button>
-      <button class="category-card " type="button" data-category="medicine">
+      <button class="category-card" type="button" data-category="medicine">
         <span class="card-icon icon-medicine" aria-hidden="true">✚</span>
         <span class="card-title" data-i18n="medicine">الدواء</span>
         <span class="card-description" data-i18n="medicineDesc">دوائي أو أحتاج مساعدة</span>
@@ -207,7 +205,6 @@
         <span class="card-arrow" aria-hidden="true">↗</span>
       </button>
     </section>
-    
 
    <section class="pause-card hidden" aria-label="Pause controls">
       <div class="pause-copy">
@@ -233,7 +230,6 @@
       </div>
     </div>
 
-    
     <!-- Caregiver Dialog -->
     <dialog class="modal" id="caregiverDialog">
       <div class="modal-inner">
@@ -272,7 +268,7 @@
         <button class="primary-button" type="submit" formmethod="dialog" data-i18n="close" onclick="document.getElementById('emergencyDialog').close()">إغلاق</button>
       </div>
     </dialog>
-    
+
     <!-- Needs Page -->
     <section class="needs-page hidden" id="needsPage" aria-labelledby="needsTitle">
       <div class="needs-heading">
@@ -280,7 +276,6 @@
         <h1 id="needsTitle" data-i18n="needs">الاحتياجات</h1>
       </div>
 
-      
 <div class="needs-grid needs-navigation-grid">
 
   <button class="need-card" id="needsBackBtn" type="button">
@@ -299,7 +294,6 @@
   </button>
 
 </div>
-
 
       <div class="needs-grid">
         <button class="need-card" type="button" data-need="water">
@@ -348,13 +342,9 @@
         </button>
       </div>
 
-     
-
       <p class="needs-feedback hidden" id="needsFeedback" role="status" aria-live="polite"></p>
     </section>
 
-    <!-- Medicine Placeholder -->
-    
 <!-- Medicine Page -->
 <section class="needs-page medicine-page hidden" id="medicinePage"
          aria-labelledby="medicineTitle">
@@ -371,7 +361,6 @@
 </p>
   </div>
 
- 
 <!-- Navigation row: يظهر أولًا -->
 <div class="needs-grid needs-navigation-grid medicine-navigation">
 
@@ -419,9 +408,7 @@
 
 </div>
 
-
 </section>
-
 
 <!-- =========================
      KEYBOARD PAGE
@@ -493,24 +480,31 @@
 
   </div>
 
-  <!-- Speak Button - Full Width -->
-  <div class="keyboard-actions">
+<!-- Keyboard Actions: Speak + Clear -->
 
+<div class="keyboard-actions">
+
+    <!-- Speak Button -->
     <button class="keyboard-action keyboard-speak-button"
             id="keyboardSpeakBtn" type="button">
 
-      <span>🔊</span>
-      <strong>نطق</strong>
+        <span>🔊</span>
+        <strong>نطق</strong>
 
     </button>
 
-  </div>
+    <!-- Clear Message Button -->
+    <button class="keyboard-action keyboard-clear-button"
+            id="keyboardClearBtn" type="button">
+
+        <span>🗑️</span>
+        <strong>حذف</strong>
+
+    </button>
+
+</div>
 
 </section>
-
-
-
-
 
 <!-- =========================
      LETTERS POPUP
@@ -564,13 +558,6 @@
   </div>
 
 </dialog>
-
-
-</section>
-
-
-
-
 
 <!-- =========================
      MY ROOM PAGE
@@ -639,8 +626,6 @@
 
 </section>
 
-
-
 <!-- ENTERTAINMENT PAGE -->
 <section class="needs-page entertainment-page hidden" id="entertainmentPage">
 
@@ -703,14 +688,7 @@
 
 </section>
 
-  
-
-    
   </main>
-
-  
-
- 
 
   <script src="app.js"></script>
 </body>
