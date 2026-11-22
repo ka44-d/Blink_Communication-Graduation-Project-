@@ -1,0 +1,214 @@
+
+/* Room Page */
+
+.room-page {
+  min-height: 0;
+}
+
+/* ==========================================
+   MY ROOM PAGE
+===================================== */
+
+.room-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+.room-page .needs-heading {
+  flex-shrink: 0;
+  margin-bottom: 0;
+  text-align: end;
+}
+
+.room-page .needs-heading h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Row 1: Back - Emergency - Next */
+
+.room-navigation {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.room-navigation .need-card {
+  min-height: 100px;
+  border-radius: 22px;
+  padding: 10px;
+  gap: 7px;
+}
+
+.room-navigation .need-icon {
+  font-size: 2rem;
+}
+
+.room-navigation .need-label {
+  font-size: 1.15rem;
+}
+
+/* Row 2: Lighting and Fan */
+
+.room-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.room-control-card {
+  min-height: 130px;
+  border-radius: 23px;
+  gap: 10px;
+  transition: .2s;
+}
+
+.room-control-card .need-icon {
+  font-size: 2.7rem;
+}
+
+.room-control-card .need-label {
+  font-size: 1.35rem;
+}
+
+.room-light-icon {
+  color: #eabf35;
+}
+
+.room-fan-icon {
+  color: #38bdf8;
+}
+
+/* Hover Effects */
+
+.room-control-card:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+}
+
+.room-control-card:active {
+  transform: scale(.98);
+}
+
+/* =====================================
+   ROOM PAGE - FULL SCREEN LAYOUT
+===================================== */
+
+html:has(#roomPage:not(.hidden)),
+body:has(#roomPage:not(.hidden)) {
+  height: 100%;
+  overflow: hidden;
+}
+
+body:has(#roomPage:not(.hidden)) .app-shell {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+body:has(#roomPage:not(.hidden)) .topbar {
+  flex-shrink: 0;
+}
+
+body:has(#roomPage:not(.hidden)) #roomPage {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  padding-top: 12px;
+  padding-bottom: 8px;
+}
+
+body:has(#roomPage:not(.hidden)) .room-page .needs-heading {
+  flex-shrink: 0;
+}
+
+body:has(#roomPage:not(.hidden)) .room-navigation {
+  flex-shrink: 0;
+}
+
+body:has(#roomPage:not(.hidden)) .room-controls {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 820px) {
+
+  .room-page {
+    gap: 10px;
+  }
+
+  .room-navigation {
+    gap: 10px;
+  }
+
+  .room-navigation .need-card {
+    min-height: 80px;
+    border-radius: 17px;
+  }
+
+  .room-controls {
+    gap: 10px;
+  }
+
+  .room-control-card {
+    min-height: 110px;
+    border-radius: 18px;
+  }
+
+}
+
+@media (max-width: 520px) {
+
+  body:has(#roomPage:not(.hidden)) #roomPage {
+    padding-top: 6px;
+    padding-bottom: 5px;
+  }
+
+  .room-navigation {
+    gap: 6px;
+  }
+
+  .room-navigation .need-card {
+    min-height: 65px;
+    padding: 6px;
+    gap: 4px;
+  }
+
+  .room-navigation .need-icon {
+    font-size: 1.4rem;
+  }
+
+  .room-navigation .need-label {
+    font-size: .8rem;
+  }
+
+  .room-controls {
+    gap: 8px;
+  }
+
+  .room-control-card {
+    min-height: 100px;
+    padding: 8px;
+    gap: 7px;
+    border-radius: 16px;
+  }
+
+  .room-control-card .need-icon {
+    font-size: 2rem;
+  }
+
+  .room-control-card .need-label {
+    font-size: 1rem;
+  }
+
+}

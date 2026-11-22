@@ -1,0 +1,279 @@
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0c">
+
+  <title>Blink Communication - Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/general.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body>
+
+  <main class="app-shell" id="app">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+      <a class="brand-small" href="#" aria-label="Blink Communication">
+        <span class="brand-symbol" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span>Blink Communication</span>
+      </a>
+
+      <nav class="top-actions" aria-label="Settings">
+
+        <button class="utility-button" id="caregiverBtn"
+                type="button" data-i18n="caregiver">
+          لوحة المرافق
+        </button>
+
+        <button class="utility-button" id="logoutBtn"
+        type="button" data-i18n="logout">
+  تسجيل الخروج
+</button>
+
+        <button class="utility-button language-button"
+                id="languageBtn" type="button"
+                aria-label="Change language">
+          <svg class="globe-icon" viewBox="0 0 24 24"
+               aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>
+          </svg>
+          <span id="languageLabel" class="sr-only">English</span>
+        </button>
+
+        <button class="icon-button" id="themeBtn"
+                type="button"
+                aria-label="Toggle day and night mode"
+                title="الوضع النهاري">
+          <span id="themeIcon" aria-hidden="true">☾</span>
+        </button>
+
+      </nav>
+    </header>
+
+    <!-- DASHBOARD WELCOME -->
+    <section class="welcome-row">
+
+      <p class="eyebrow" data-i18n="dashboardLabel">
+        مساحة التواصل المساعدة
+      </p>
+
+      <h2 data-i18n="dashboardTitle">
+        إيه اللي محتاج تقوله؟
+      </h2>
+
+      <p class="welcome-description" data-i18n="dashboardDesc">
+        اختار كارت للتعبير عن احتياجك بسرعة ووضوح.
+      </p>
+
+    </section>
+
+    <!-- DASHBOARD CATEGORY CARDS -->
+    <section class="cards-grid" aria-label="Communication categories">
+
+      <button class="category-card" type="button"
+              data-category="needs">
+        <span class="card-icon icon-needs" aria-hidden="true">♡</span>
+        <span class="card-title" data-i18n="needs">الاحتياجات</span>
+        <span class="card-description" data-i18n="needsDesc">
+          ماء، أكل، حمام والمزيد
+        </span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+
+      <button class="category-card" type="button"
+              data-category="medicine">
+        <span class="card-icon icon-medicine" aria-hidden="true">✚</span>
+        <span class="card-title" data-i18n="medicine">الدواء</span>
+        <span class="card-description" data-i18n="medicineDesc">
+          دوائي أو أحتاج مساعدة
+        </span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+
+      <button class="category-card" type="button"
+              data-category="keyboard">
+        <span class="card-icon icon-keyboard" aria-hidden="true">⌨</span>
+        <span class="card-title" data-i18n="keyboard">الكيبورد</span>
+        <span class="card-description" data-i18n="keyboardDesc">
+          اكتب رسالة بطريقتك
+        </span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+
+      <button class="category-card" type="button"
+              data-category="room">
+        <span class="card-icon icon-room" aria-hidden="true">⌂</span>
+        <span class="card-title" data-i18n="room">غرفتي</span>
+        <span class="card-description" data-i18n="roomDesc">
+          الراحة والأشياء حولي
+        </span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+
+      <button class="category-card" type="button"
+              data-category="fun">
+        <span class="card-icon icon-fun" aria-hidden="true">✦</span>
+        <span class="card-title" data-i18n="fun">الترفيه</span>
+        <span class="card-description" data-i18n="funDesc">
+          أنشطة ووقت ممتع
+        </span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+
+      <button class="category-card emergency-card" type="button"
+              data-category="emergency">
+        <span class="card-icon icon-emergency" aria-hidden="true">!</span>
+        <span class="card-title" data-i18n="emergency">
+          زرار الطوارئ
+        </span>
+        <span class="card-description" data-i18n="emergencyDesc">
+          محتاج مساعدة حالًا
+        </span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </button>
+
+    </section>
+
+
+
+    <!-- PAUSE OVERLAY -->
+    <div class="pause-overlay hidden" id="pauseOverlay">
+
+      <div class="pause-overlay-card">
+
+        <div class="pause-big-icon" aria-hidden="true">
+          <i></i>
+          <i></i>
+        </div>
+
+        <h2 data-i18n="pausedTitle">
+          تم إيقاف التفاعل مؤقتًا
+        </h2>
+
+        <p data-i18n="pausedDesc">
+          اضغط متابعة للرجوع إلى الصفحة.
+        </p>
+
+        <button class="primary-button" id="resumeBtn"
+                type="button" data-i18n="resume">
+          متابعة
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- CAREGIVER DIALOG -->
+    <dialog class="modal" id="caregiverDialog">
+
+      <div class="modal-inner">
+
+        <form method="dialog">
+          <button class="modal-close" type="submit"
+                  aria-label="Close">×</button>
+        </form>
+
+        <h2 data-i18n="caregiverTitle">لوحة المرافق</h2>
+
+        <p class="muted" data-i18n="caregiverText">
+          إعدادات المرافق
+        </p>
+
+        <button class="primary-button" type="button"
+                onclick="document.getElementById('caregiverDialog').close()"
+                data-i18n="okay">
+          حسنًا
+        </button>
+
+      </div>
+
+    </dialog>
+
+    <!-- CATEGORY DIALOG -->
+    <dialog class="modal" id="categoryDialog">
+
+      <div class="modal-inner">
+
+        <form method="dialog">
+          <button class="modal-close" type="submit"
+                  aria-label="Close">×</button>
+        </form>
+
+        <div class="modal-icon" id="categoryModalIcon"
+             aria-hidden="true"></div>
+
+        <h2 id="categoryModalTitle"></h2>
+
+        <p class="muted" data-i18n="categoryComing">
+          سيتم إضافة المحتوى قريبًا.
+        </p>
+
+        <p data-i18n="nextStep">
+          اختر ما تحتاج إليه.
+        </p>
+
+        <button class="primary-button" type="button"
+                onclick="document.getElementById('categoryDialog').close()"
+                data-i18n="okay">
+          حسنًا
+        </button>
+
+      </div>
+
+    </dialog>
+
+    <!-- EMERGENCY DIALOG -->
+    <dialog class="modal" id="emergencyDialog">
+
+      <div class="modal-inner">
+
+        <form method="dialog">
+          <button class="modal-close" type="submit"
+                  aria-label="Close">×</button>
+        </form>
+
+        <div class="alert-icon" aria-hidden="true">!</div>
+
+        <h2 data-i18n="emergencyTitle">حالة طارئة</h2>
+
+        <p class="muted" data-i18n="emergencyText">
+          اطلب المساعدة عند الحاجة.
+        </p>
+
+        <button class="primary-button" type="submit"
+                formmethod="dialog" data-i18n="close"
+                onclick="document.getElementById('emergencyDialog').close()">
+          إغلاق
+        </button>
+
+      </div>
+
+    </dialog>
+
+  </main>
+
+  <script src="../js/general/translations.js"></script>
+  <script src="../js/general/shared.js"></script>
+  <script src="../js/general/language.js"></script>
+  <script src="../js/general/theme.js"></script>
+  <script src="../js/general/navigation.js"></script>
+  <script src="../js/pages/dashboard.js"></script>
+
+</body>
+</html>

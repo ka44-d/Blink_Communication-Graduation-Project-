@@ -1,0 +1,151 @@
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0c">
+
+  <title>Blink Communication - My Room</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/general.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/needs.css">
+  <link rel="stylesheet" href="../css/room.css">
+</head>
+
+<body>
+
+  <main class="app-shell" id="app">
+
+    <header class="topbar">
+      <a class="brand-small" href="#" aria-label="Blink Communication">
+        <span class="brand-symbol" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Blink Communication</span>
+      </a>
+
+      <nav class="top-actions" aria-label="Settings">
+
+        <button class="utility-button" id="caregiverBtn"
+                type="button" data-i18n="caregiver">
+          لوحة المرافق
+        </button>
+
+        <button class="utility-button language-button"
+                id="languageBtn" type="button"
+                aria-label="Change language">
+          <svg class="globe-icon" viewBox="0 0 24 24"
+               aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>
+          </svg>
+          <span id="languageLabel" class="sr-only">English</span>
+        </button>
+
+        <button class="icon-button" id="themeBtn"
+                type="button" aria-label="Toggle day and night mode"
+                title="الوضع النهاري">
+          <span id="themeIcon" aria-hidden="true">☾</span>
+        </button>
+
+      </nav>
+    </header>
+
+    <!-- MY ROOM PAGE -->
+    <section class="needs-page room-page" id="roomPage">
+
+      <!-- Page Title -->
+      <div class="needs-heading">
+        <p class="needs-eyebrow">Blink Communication</p>
+        <h1 data-room-text="title">غرفتي</h1>
+      </div>
+
+      <!-- Row 1: Navigation -->
+      <div class="needs-grid needs-navigation-grid room-navigation">
+
+        <button class="need-card" id="roomBackBtn" type="button">
+          <span class="need-icon">↩️</span>
+          <span class="need-label" data-room-text="back">الرجوع</span>
+        </button>
+
+        <button class="need-card needs-emergency-card"
+                id="roomEmergencyBtn" type="button">
+          <span class="need-icon">❗</span>
+          <span class="need-label" data-room-text="emergency">
+            زرار الطوارئ
+          </span>
+        </button>
+
+        <button class="need-card" id="roomNextBtn" type="button">
+          <span class="need-icon">➡️</span>
+          <span class="need-label" data-room-text="next">التالي</span>
+        </button>
+
+      </div>
+
+      <!-- Row 2: Room Controls -->
+      <div class="needs-grid room-controls">
+
+        <!-- Lighting -->
+        <button class="need-card room-control-card"
+                id="roomLightBtn" type="button">
+          <span class="need-icon room-light-icon">💡</span>
+          <span class="need-label" data-room-text="light">
+            الإضاءة
+          </span>
+        </button>
+
+        <!-- Fan -->
+        <button class="need-card room-control-card"
+                id="roomFanBtn" type="button">
+          <span class="need-icon room-fan-icon">🌀</span>
+          <span class="need-label" data-room-text="fan">
+            المروحة
+          </span>
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- Emergency Dialog -->
+    <dialog class="modal" id="emergencyDialog">
+      <div class="modal-inner">
+
+        <form method="dialog">
+          <button class="modal-close" type="submit"
+                  aria-label="Close">×</button>
+        </form>
+
+        <div class="alert-icon" aria-hidden="true">!</div>
+
+        <h2 data-i18n="emergencyTitle">حالة طارئة</h2>
+
+        <p class="muted" data-i18n="emergencyText">
+          اطلب المساعدة عند الحاجة.
+        </p>
+
+        <button class="primary-button" type="submit"
+                formmethod="dialog" data-i18n="close"
+                onclick="document.getElementById('emergencyDialog').close()">
+          إغلاق
+        </button>
+
+      </div>
+    </dialog>
+
+  </main>
+
+  <script src="../js/general/translations.js"></script>
+  <script src="../js/general/shared.js"></script>
+  <script src="../js/general/language.js"></script>
+  <script src="../js/general/theme.js"></script>
+  <script src="../js/general/navigation.js"></script>
+  <script src="../js/pages/room.js"></script>
+
+</body>
+</html>

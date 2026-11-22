@@ -1,0 +1,150 @@
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0c">
+
+  <title>Blink Communication - Sign Up</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/general.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+
+<body>
+
+  <main class="app-shell" id="app">
+
+    <header class="topbar">
+      <a class="brand-small" href="#" aria-label="Blink Communication">
+        <span class="brand-symbol" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span>Blink Communication</span>
+      </a>
+
+      <nav class="top-actions" aria-label="Settings">
+
+        <button class="utility-button" id="caregiverBtn"
+                type="button" data-i18n="caregiver">
+          لوحة المرافق
+        </button>
+
+        <button class="utility-button language-button"
+                id="languageBtn" type="button"
+                aria-label="Change language">
+          <svg class="globe-icon" viewBox="0 0 24 24"
+               aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>
+          </svg>
+          <span id="languageLabel" class="sr-only">English</span>
+        </button>
+
+        <button class="icon-button" id="themeBtn"
+                type="button"
+                aria-label="Toggle day and night mode"
+                title="الوضع النهاري">
+          <span id="themeIcon" aria-hidden="true">☾</span>
+        </button>
+
+      </nav>
+    </header>
+
+    <!-- SIGN UP PAGE -->
+    <section class="auth-view" id="signupPage">
+
+      <div class="auth-card">
+
+        <div class="auth-logo">B</div>
+
+        <h1 data-auth="signupTitle">إنشاء حساب جديد</h1>
+
+        <p class="auth-description" data-auth="signupDescription">
+          أنشئ حسابك للبدء.
+        </p>
+
+        <form id="signupForm" class="auth-form">
+
+          <label for="signupUsername" data-auth="usernameOnly">
+            اسم المستخدم
+          </label>
+
+          <input
+            id="signupUsername"
+            type="text"
+            autocomplete="username"
+            required
+            data-placeholder="chooseUsername"
+            placeholder="اختار اسم مستخدم"
+          >
+
+          <label for="signupEmail" data-auth="email">
+            البريد الإلكتروني
+          </label>
+
+          <input
+            id="signupEmail"
+            type="email"
+            autocomplete="email"
+            required
+            data-placeholder="emailPlaceholder"
+            placeholder="اكتب بريدك الإلكتروني"
+          >
+
+          <label for="signupPassword" data-auth="password">
+            كلمة المرور
+          </label>
+
+          <input
+            id="signupPassword"
+            type="password"
+            autocomplete="new-password"
+            minlength="8"
+            required
+            data-placeholder="newPasswordPlaceholder"
+            placeholder="8 أحرف على الأقل"
+          >
+
+          <p class="auth-message" id="signupMessage" role="status"></p>
+
+          <button class="auth-submit" type="submit"
+                  data-auth="createAccount">
+            إنشاء الحساب
+          </button>
+
+          <button type="button" class="auth-text-button"
+                  id="signupBack" data-auth="backLogin">
+            العودة لتسجيل الدخول
+          </button>
+
+        </form>
+
+        <p class="auth-footer" data-auth="footer">
+          Blink Communication — تواصل أوضح، كل يوم.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="../js/general/translations.js"></script>
+  <script src="../js/general/shared.js"></script>
+  <script src="../js/general/language.js"></script>
+  <script src="../js/general/theme.js"></script>
+  <script src="../js/general/navigation.js"></script>
+  <script src="../js/pages/auth.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,433 @@
+
+.keyboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 1vh, 12px);
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* Navigation */
+.keyboard-navigation {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(6px, 1vw, 14px);
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.keyboard-navigation .need-card {
+  min-width: 0;
+  min-height: clamp(58px, 11vh, 100px);
+  padding: 8px;
+  gap: 5px;
+  border-radius: 20px;
+}
+
+.keyboard-navigation .need-icon {
+  font-size: clamp(1.3rem, 3vh, 2rem);
+}
+
+.keyboard-navigation .need-label {
+  font-size: clamp(.9rem, 2.2vh, 1.3rem);
+}
+
+/* Message Output */
+.keyboard-output {
+  min-height: clamp(58px, 11vh, 90px);
+  max-height: 90px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text);
+  direction: rtl;
+  overflow: hidden;
+}
+
+.keyboard-output-title {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+#keyboardOutput {
+  max-height: 40px;
+  overflow: hidden;
+  font-size: clamp(1rem, 2.5vh, 1.4rem);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+/* Letter Groups */
+.keyboard-groups {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: clamp(6px, 1vh, 12px);
+}
+
+.keyboard-group {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px;
+  border: 2px solid var(--border);
+  border-radius: 25px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.keyboard-group span {
+  font-size: clamp(1rem, 2.8vw, 2rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.keyboard-group small {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.keyboard-group:hover,
+.keyboard-group:focus-visible {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  outline: none;
+}
+
+.keyboard-group:active {
+  transform: scale(.98);
+}
+
+/* Keyboard Actions - Speak + Clear */
+.keyboard-actions {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.keyboard-action {
+  width: 100%;
+  min-width: 0;
+  min-height: clamp(60px, 10vh, 90px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  cursor: pointer;
+  transition: .2s;
+  box-sizing: border-box;
+}
+
+.keyboard-action span {
+  font-size: clamp(1.5rem, 3.5vh, 2.3rem);
+}
+
+.keyboard-action strong {
+  font-size: clamp(1rem, 2.5vh, 1.4rem);
+}
+
+.keyboard-action:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+
+.keyboard-action:active {
+  transform: scale(.99);
+}
+
+/* Clear Button */
+.keyboard-clear-button:hover {
+  border-color: #ff626b;
+}
+
+/* Letters Popup */
+.letter-dialog {
+  width: min(85vw, 850px);
+  max-width: 850px;
+  max-height: 80dvh;
+  padding: 0;
+  border: 2px solid var(--border);
+  border-radius: 25px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.letter-dialog::backdrop {
+  background: rgba(0, 0, 0, .78);
+  backdrop-filter: blur(5px);
+}
+
+.letter-dialog-content {
+  position: relative;
+  padding: clamp(22px, 4vw, 40px);
+  text-align: center;
+}
+
+.letter-dialog-content h2 {
+  margin: 0 0 22px;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.letter-button {
+  min-width: 0;
+  min-height: clamp(65px, 10vh, 100px);
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: inherit;
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  font-weight: 800;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.letter-button:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.letter-button:active {
+  transform: scale(.95);
+}
+
+/* Keyboard Responsive Design */
+@media (max-width: 600px) {
+  .keyboard-navigation {
+    gap: 6px;
+  }
+
+  .keyboard-navigation .need-card {
+    border-radius: 14px;
+    min-height: 58px;
+  }
+
+  .keyboard-group {
+    border-radius: 15px;
+    padding: 5px;
+  }
+
+  .keyboard-group span {
+    font-size: clamp(.85rem, 3.5vw, 1.25rem);
+    letter-spacing: 0;
+  }
+
+  .keyboard-group small {
+    font-size: .72rem;
+  }
+
+  .keyboard-speak-button {
+    border-radius: 15px;
+  }
+
+  .letter-dialog {
+    width: 94vw;
+  }
+
+  .letter-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+
+/* Short screens */
+@media (max-height: 650px) {
+  .keyboard-page {
+    gap: 5px;
+  }
+
+  .keyboard-navigation .need-card {
+    min-height: 48px;
+  }
+
+  .keyboard-output {
+    min-height: 42px;
+  }
+
+  .keyboard-action {
+    min-height: 52px;
+  }
+}
+
+/* No scrolling on keyboard page */
+html:has(#keyboardPage:not(.hidden)),
+body:has(#keyboardPage:not(.hidden)) {
+  height: 100%;
+  overflow: hidden;
+}
+
+body:has(#keyboardPage:not(.hidden)) .app-shell {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+body:has(#keyboardPage:not(.hidden)) .topbar {
+  flex-shrink: 0;
+}
+
+body:has(#keyboardPage:not(.hidden)) #keyboardPage {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+  overflow: hidden;
+  padding-top: clamp(5px, 1vh, 12px);
+  padding-bottom: 5px;
+}
+
+body:has(#keyboardPage:not(.hidden)) .keyboard-groups {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Popup Live Message */
+.popup-message-box {
+  width: 100%;
+  min-height: 75px;
+  max-height: 100px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 15px;
+  margin-bottom: 18px;
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  background: var(--surface-2);
+  direction: rtl;
+  overflow: hidden;
+}
+
+.popup-message-title {
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+#popupKeyboardOutput {
+  color: var(--text);
+  font-size: clamp(1rem, 2.5vh, 1.4rem);
+  font-weight: 800;
+  max-height: 45px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+/* Popup action buttons */
+.popup-keyboard-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  margin-top: 18px;
+}
+
+.popup-action-button {
+  min-width: 0;
+  min-height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: inherit;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.popup-action-button span {
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.popup-action-button strong {
+  font-size: 1rem;
+}
+
+.popup-action-button:hover {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.popup-action-button:active {
+  transform: scale(.97);
+}
+
+/* Exit Button */
+.popup-exit-button {
+  border-color: var(--danger);
+}
+
+.popup-exit-button:hover {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+
+/* Popup sizing */
+.letter-dialog {
+  width: min(90vw, 850px);
+  max-height: 90dvh;
+  overflow-y: auto;
+}
+
+.letter-dialog-content {
+  padding: clamp(18px, 3vw, 35px);
+}
+
+.letter-grid {
+  margin-top: 5px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .popup-keyboard-actions {
+    gap: 7px;
+  }
+
+  .popup-action-button {
+    min-height: 65px;
+    border-radius: 13px;
+  }
+
+  .popup-action-button strong {
+    font-size: .85rem;
+  }
+}

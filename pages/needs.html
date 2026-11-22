@@ -1,0 +1,189 @@
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0c">
+
+  <title>Blink Communication - Needs</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/general.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/needs.css">
+</head>
+
+<body>
+
+  <main class="app-shell" id="app">
+
+    <header class="topbar">
+      <a class="brand-small" href="#" aria-label="Blink Communication">
+        <span class="brand-symbol" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span>Blink Communication</span>
+      </a>
+
+      <nav class="top-actions" aria-label="Settings">
+
+        <button class="utility-button" id="caregiverBtn"
+                type="button" data-i18n="caregiver">
+          لوحة المرافق
+        </button>
+
+        <button class="utility-button language-button"
+                id="languageBtn" type="button"
+                aria-label="Change language">
+          <svg class="globe-icon" viewBox="0 0 24 24"
+               aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>
+          </svg>
+          <span id="languageLabel" class="sr-only">English</span>
+        </button>
+
+        <button class="icon-button" id="themeBtn"
+                type="button"
+                aria-label="Toggle day and night mode"
+                title="الوضع النهاري">
+          <span id="themeIcon" aria-hidden="true">☾</span>
+        </button>
+
+      </nav>
+    </header>
+
+    <!-- NEEDS PAGE -->
+    <section class="needs-page" id="needsPage"
+             aria-labelledby="needsTitle">
+
+      <div class="needs-heading">
+        <p class="needs-eyebrow" data-i18n="needsPrompt">
+          اختار اللي محتاجه
+        </p>
+
+        <h1 id="needsTitle" data-i18n="needs">
+          الاحتياجات
+        </h1>
+      </div>
+
+      <div class="needs-grid needs-navigation-grid">
+
+        <button class="need-card" id="needsBackBtn" type="button">
+          <span class="need-icon">↩️</span>
+          <span class="need-label" data-i18n="needsBack">الرجوع</span>
+        </button>
+
+        <button class="need-card needs-emergency-card"
+                id="needsEmergencyBtn" type="button">
+          <span class="need-icon">❗</span>
+          <span class="need-label" data-i18n="emergency">
+            زرار الطوارئ
+          </span>
+        </button>
+
+        <button class="need-card" id="needsNextBtn" type="button">
+          <span class="need-icon">➡️</span>
+          <span class="need-label" data-i18n="needsNext">التالي</span>
+        </button>
+
+      </div>
+
+      <div class="needs-grid">
+
+        <button class="need-card" type="button" data-need="water">
+          <span class="need-icon">💧</span>
+          <span class="need-label" data-i18n="needWater">ماء</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="food">
+          <span class="need-icon">🍽️</span>
+          <span class="need-label" data-i18n="needFood">أكل</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="bathroom">
+          <span class="need-icon">🚻</span>
+          <span class="need-label" data-i18n="needBathroom">حمام</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="pain">
+          <span class="need-icon">😣</span>
+          <span class="need-label" data-i18n="needPain">ألم</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="cold">
+          <span class="need-icon">🥶</span>
+          <span class="need-label" data-i18n="needCold">برد</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="hot">
+          <span class="need-icon">🥵</span>
+          <span class="need-label" data-i18n="needHot">حر</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="family">
+          <span class="need-icon">👨‍👩‍👧</span>
+          <span class="need-label" data-i18n="needFamily">أسرتي</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="sad">
+          <span class="need-icon">😟</span>
+          <span class="need-label" data-i18n="needSad">حزين</span>
+        </button>
+
+        <button class="need-card" type="button" data-need="thanks">
+          <span class="need-icon">🙏</span>
+          <span class="need-label" data-i18n="needThanks">شكرًا</span>
+        </button>
+
+      </div>
+
+      <p class="needs-feedback hidden"
+         id="needsFeedback"
+         role="status"
+         aria-live="polite"></p>
+
+    </section>
+
+    <dialog class="modal" id="emergencyDialog">
+      <div class="modal-inner">
+
+        <form method="dialog">
+          <button class="modal-close" type="submit"
+                  aria-label="Close">×</button>
+        </form>
+
+        <div class="alert-icon" aria-hidden="true">!</div>
+
+        <h2 data-i18n="emergencyTitle">حالة طارئة</h2>
+
+        <p class="muted" data-i18n="emergencyText">
+          اطلب المساعدة عند الحاجة.
+        </p>
+
+        <button class="primary-button" type="submit"
+                formmethod="dialog" data-i18n="close"
+                onclick="document.getElementById('emergencyDialog').close()">
+          إغلاق
+        </button>
+
+      </div>
+    </dialog>
+
+  </main>
+
+  <script src="../js/general/translations.js"></script>
+  <script src="../js/general/shared.js"></script>
+  <script src="../js/general/language.js"></script>
+  <script src="../js/general/theme.js"></script>
+  <script src="../js/general/navigation.js"></script>
+  <script src="../js/pages/needs.js"></script>
+
+</body>
+</html>
