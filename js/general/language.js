@@ -98,6 +98,16 @@ function applyLanguage() {
     }
   });
 
+  // Translate input placeholders
+document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+  const key = element.dataset.i18nPlaceholder;
+  const value = translations[lang][key];
+
+  if (value !== undefined) {
+    element.placeholder = value;
+  }
+});
+
   applyAuthLanguage();
   applyEntertainmentLanguage();
   applyRoomLanguage();

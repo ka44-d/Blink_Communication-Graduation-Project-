@@ -40,6 +40,11 @@
           لوحة المرافق
         </button>
 
+        <button class="utility-button" id="logoutBtn"
+        type="button" data-i18n="logout">
+  تسجيل الخروج
+</button>
+
         <button class="utility-button language-button"
                 id="languageBtn" type="button"
                 aria-label="Change language">
@@ -145,33 +150,7 @@
 
     </section>
 
-    <!-- PAUSE CARD -->
-    <section class="pause-card" aria-label="Pause controls">
 
-      <div class="pause-copy">
-        <span class="pause-indicator" aria-hidden="true"></span>
-
-        <div>
-          <h3 data-i18n="pauseTitle">إيقاف مؤقت</h3>
-          <p data-i18n="pauseDesc">
-            اضغط لإيقاف التفاعل مؤقتًا
-          </p>
-        </div>
-      </div>
-
-      <button class="pause-button" id="pauseBtn"
-              type="button" aria-label="Pause interaction">
-        <span class="pause-symbol" id="pauseSymbol"
-              aria-hidden="true">
-          <i></i>
-          <i></i>
-        </span>
-        <span id="pauseLabel" data-i18n="pauseAction">
-          إيقاف مؤقت
-        </span>
-      </button>
-
-    </section>
 
     <!-- PAUSE OVERLAY -->
     <div class="pause-overlay hidden" id="pauseOverlay">

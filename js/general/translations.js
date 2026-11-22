@@ -3,6 +3,7 @@ const translations = {
   ar: {
     welcome: "Welcome",
     caregiver: "لوحة المرافق",
+    logout: "تسجيل الخروج",
     dashboardLabel: "مساحة التواصل المساعدة",
     dashboardTitle: "إيه اللي محتاج تقوله؟",
     dashboardDesc: "اختار كارت للتعبير عن احتياجك بسرعة ووضوح.",
@@ -84,12 +85,24 @@ const translations = {
       next: "التالي",
       light: "الإضاءة",
       fan: "المروحة"
-    }
+    },
+
+    resetTitle: "استعادة كلمة المرور",
+resetDescription: "أدخل بياناتك لاستعادة كلمة المرور.",
+emailLabel: "البريد الإلكتروني",
+emailPlaceholder: "اكتب بريدك الإلكتروني",
+resetCodeLabel: "كود الاستعادة",
+resetCodePlaceholder: "أدخل كود الاستعادة",
+newPasswordLabel: "كلمة المرور الجديدة",
+newPasswordPlaceholder: "اكتب كلمة المرور الجديدة",
+resetSubmit: "استعادة كلمة المرور",
+backToLogin: "العودة لتسجيل الدخول",
   },
 
   en: {
-    welcome: "A simpler way to communicate, one step at a time",
+    welcome: "Welcome",
     caregiver: "Caregiver Dashboard",
+    logout: "Log Out",
     dashboardLabel: "ASSISTIVE COMMUNICATION",
     dashboardTitle: "What would you like to say?",
     dashboardDesc: "Choose a card to express a need quickly and clearly.",
@@ -171,7 +184,17 @@ const translations = {
       next: "Next",
       light: "Lighting",
       fan: "Fan"
-    }
+    },
+    resetTitle: "Reset Password",
+resetDescription: "Enter your details to reset your password.",
+emailLabel: "Email Address",
+emailPlaceholder: "Enter your email address",
+resetCodeLabel: "Reset Code",
+resetCodePlaceholder: "Enter the reset code",
+newPasswordLabel: "New Password",
+newPasswordPlaceholder: "Enter your new password",
+resetSubmit: "Reset Password",
+backToLogin: "Back to Login",
   }
 };
 
