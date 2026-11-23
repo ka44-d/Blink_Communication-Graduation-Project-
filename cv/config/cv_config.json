@@ -9,5 +9,8 @@
     "left_wink_event": "PREVIOUS"
   },
   "head": {"yaw_max_deg": 35, "pitch_max_deg": 30, "speed_max_dps": 90},
-  "fusion": {"use_blendshapes": true, "blendshape_weight": 0.5}
+  "fusion": {"use_blendshapes": true, "blendshape_weight": 0.5},
+  "network": {
+    "url": "ws://127.0.0.1:8000/ws/cv"
+  }
 }
