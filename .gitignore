@@ -1,0 +1,18 @@
+﻿
+# --- AI Services Security & Heavy Models ---
+.env
+.env.*
+*.env
+.env.txt
+!.env.example
+__pycache__/
+*.py[cod]
+**/modules/TTS/voices/
+modules/TTS/voices/
+*.onnx
+*.onnx.json
+*.onnx.tmp
+*.wav
+*.mp3
+.venv/
+venv/
